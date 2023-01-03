@@ -60,8 +60,12 @@ width: 100%;
 p, h1, h2, h3, h4 {
 overflow-wrap: break-word;
 }
-
 /** end reset css**/
+
+html {
+	scroll-behavior: smooth;
+  }
+
 body {
 	max-width: 1140px;
 	margin:auto;
@@ -119,6 +123,11 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+}
+
+.nav-link {
+	color: #000000;
+	text-decoration: none;
 }
 
 #introduction {
