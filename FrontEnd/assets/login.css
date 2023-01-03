@@ -10,7 +10,6 @@
 
 #login h2{
     margin: 5em 0 0.6em 0;
-	/* margin-bottom: 20px; */
 }
 
 #login form {
@@ -21,6 +20,7 @@
 }
 
 #login input {
+	padding: 0.8em;
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
@@ -31,8 +31,7 @@
 	margin: 2em 0 1em 0;
 }
 
-
-#login .login-btn {
+#login .submit-btn {
     cursor: pointer;
 	font-family: 'Syne';
 	font-weight: 700;
@@ -47,7 +46,7 @@
     margin : 2.3em auto 1.75em auto;
 }
 
-#login .login-btn:hover {
+#login .submit-btn:hover {
     color: #1D6154;
 	background-color: white;
 }
