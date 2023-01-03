@@ -121,13 +121,13 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
-	color: #B1663C;
-}
-
 .nav-link {
 	color: #000000;
 	text-decoration: none;
+}
+
+.nav-link:hover {
+	color: #B1663C;
 }
 
 #introduction {
@@ -170,6 +170,7 @@ li:hover {
 }
 
 .filter-btn {
+	cursor: pointer;
 	font-size: 1rem;
 	color: #1D6154;
 	background-color: transparent;
@@ -181,8 +182,7 @@ li:hover {
 }
 
 .filter-btn:hover,
-.filter-btn:focus
- {
+.filter-btn:focus {
 	color: #FFFFFF;
 	background-color: #1D6154;
 }
