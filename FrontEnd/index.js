@@ -1,3 +1,4 @@
+//Fetch Works and renders gallery portfolio//
 function fetchGallery() {
     fetch("http://localhost:5678/api/works")
     .then(function(res) {
@@ -78,3 +79,10 @@ fetchGallery()
 //         galleryEl.appendChild(figure)
 // }}
 // renderPortfolio()
+
+
+// Submits contact form //
+const contactForm = document.getElementById("contact-form")
+contactForm.addEventListener("submit", function(e) {
+    e.preventDefault()
+})
