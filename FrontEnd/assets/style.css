@@ -154,10 +154,11 @@ li:hover {
     margin-top: 4.63em; /* base h2 30px / 139px = 4.63em */
 }
 
-.btn-wrapper {
+menu.btn-wrapper {
 	display: flex;
 	gap: 0.625em;
 	justify-content: center;
+	list-style-type: none; /* menu acts as <ul> */
 }
 
 .filter-btn {
