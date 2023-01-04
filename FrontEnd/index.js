@@ -1,4 +1,12 @@
-//Fetch Works and renders gallery portfolio//
+
+// Constants
+const galleryEl = document.getElementById("gallery")
+const allWorksBtn = document.getElementById("all-works")
+const objectsWorksBtn = document.getElementById("objects-works")
+const apartmentsWorksBtn = document.getElementById("apartments-works")
+const hotelsWorksBtn = document.getElementById("hotels-works")
+
+//Fetch all Works and renders gallery portfolio//
 function fetchGallery() {
     fetch("http://localhost:5678/api/works")
     .then(function(res) {
@@ -9,7 +17,6 @@ function fetchGallery() {
     .then(function(value) {
         //renders the works
         for (let i=0; i<value.length; i++) {
-            const galleryEl = document.getElementById("gallery")
             const figure = document.createElement("figure")
             figure.innerHTML = `
                 <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
@@ -23,7 +30,111 @@ function fetchGallery() {
     });
 }
 
-fetchGallery()
+//Fetch Objects Works and renders them//
+
+function fetchObjectsWorks() {
+    fetch("http://localhost:5678/api/works")
+    .then(function(res) {
+        if (res.ok) {
+          return res.json();
+        }
+    })
+    .then(function(value) {
+        //renders the works
+        for (let i=0; i<value.length; i++) {
+            //checks category property for OBJECTS (categoryId = 1)
+            if(value[i].categoryId === 1) {
+                const figure = document.createElement("figure")
+                figure.innerHTML = `
+                <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
+                <figcaption>${value[i].title}</figcaption>
+                `
+                galleryEl.appendChild(figure)
+            } 
+        }
+    })
+    .catch(function(err) {
+        // Une erreur est survenue
+    });
+}
+
+//Fetch Apartments Works and renders them//
+
+function fetchApartmentsWorks() {
+    fetch("http://localhost:5678/api/works")
+    .then(function(res) {
+        if (res.ok) {
+          return res.json();
+        }
+    })
+    .then(function(value) {
+        //renders the works
+        for (let i=0; i<value.length; i++) {
+            //checks category property for APARTMENTS (categoryId = 2)
+            if(value[i].categoryId === 2) {
+                const figure = document.createElement("figure")
+                figure.innerHTML = `
+                <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
+                <figcaption>${value[i].title}</figcaption>
+                `
+                galleryEl.appendChild(figure)
+            } 
+        }
+    })
+    .catch(function(err) {
+        // Une erreur est survenue
+    });
+}
+
+function fetchHotelsWorks() {
+    fetch("http://localhost:5678/api/works")
+    .then(function(res) {
+        if (res.ok) {
+          return res.json();
+        }
+    })
+    .then(function(value) {
+        //renders the works
+        for (let i=0; i<value.length; i++) {
+            //checks category property for HOTELS (categoryId = 3)
+            if(value[i].categoryId === 3) {
+                const figure = document.createElement("figure")
+                figure.innerHTML = `
+                <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
+                <figcaption>${value[i].title}</figcaption>
+                `
+                galleryEl.appendChild(figure)
+            } 
+        }
+    })
+    .catch(function(err) {
+        // Une erreur est survenue
+    });
+}
+
+// Event listeners for Filter buttons
+allWorksBtn.addEventListener("click", function() {
+    galleryEl.innerHTML = ""
+    fetchGallery()
+})
+
+objectsWorksBtn.addEventListener("click", function() {
+    galleryEl.innerHTML = ""
+    fetchObjectsWorks()
+})
+
+apartmentsWorksBtn.addEventListener("click", function() {
+    galleryEl.innerHTML = ""
+    fetchApartmentsWorks()
+})
+
+hotelsWorksBtn.addEventListener("click", function() {
+    galleryEl.innerHTML = ""
+    fetchHotelsWorks()
+})
+
+// Renders all works on load
+// fetchGallery()
 
 ///////////////////////////////////////////
 // TRYING TO REFACTOR THE FETCH FUNCTION //
@@ -79,6 +190,50 @@ fetchGallery()
 //         galleryEl.appendChild(figure)
 // }}
 // renderPortfolio()
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// // Fetch categories and function to filter works
+// function fetchCategories() {
+//     fetch("http://localhost:5678/api/categories")
+//       .then(function(res) {
+//       if (res.ok) {
+//         return res.json() ;
+//       }
+//     })
+//     .then(function(value) {
+//       // checks the value of the returned json  
+//       console.log(value); 
+//       //   const helloResult = document.getElementById("hello-result")
+//       //   helloResult.innerHTML = value.queryString.greetings
+//     })
+//     .catch(function(err) {
+//       // Une erreur est survenue
+//     });
+//   }
+//   fetchCategories()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Submits contact form //
