@@ -1,6 +1,3 @@
-// CONSTANTS //
-const galleryEl = document.getElementById("gallery")
-
 function fetchGallery() {
     fetch("http://localhost:5678/api/works")
     .then(function(res) {
@@ -10,7 +7,8 @@ function fetchGallery() {
       })
       .then(function(value) {
         //renders the works
-        for (let i=0; i<11; i++) {
+        for (let i=0; i<value.length; i++) {
+                    const galleryEl = document.getElementById("gallery")
                     const figure = document.createElement("figure")
                     figure.innerHTML = `
                         <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
@@ -24,8 +22,7 @@ function fetchGallery() {
       });
 }
 
-
-  fetchGallery()
+fetchGallery()
 
 
 
@@ -52,17 +49,6 @@ function fetchGallery() {
 // getapi(api_url);
 
 
-
-
-
-
-
-
-// 0
-// : 
-// {id: 2, title: 'Appartement Paris V', imageUrl: 'http://localhost:5678/images/appartement-paris-v1651287270508.png', categoryId: 2, userId: 1, …}
-
-// [2].title
 
 
 
