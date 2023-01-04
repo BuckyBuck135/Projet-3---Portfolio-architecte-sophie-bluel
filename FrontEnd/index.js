@@ -4,28 +4,44 @@ function fetchGallery() {
         if (res.ok) {
           return res.json();
         }
-      })
-      .then(function(value) {
+    })
+    .then(function(value) {
         //renders the works
         for (let i=0; i<value.length; i++) {
-                    const galleryEl = document.getElementById("gallery")
-                    const figure = document.createElement("figure")
-                    figure.innerHTML = `
-                        <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
-                        <figcaption>${value[i].title}</figcaption>
-                    `
-                    galleryEl.appendChild(figure)
-            }
-      })
-      .catch(function(err) {
+            const galleryEl = document.getElementById("gallery")
+            const figure = document.createElement("figure")
+            figure.innerHTML = `
+                <img src="${value[i].imageUrl}" alt="${value[i].title}" crossorigin="anonymous">
+                <figcaption>${value[i].title}</figcaption>
+            `
+            galleryEl.appendChild(figure)
+        }
+    })
+    .catch(function(err) {
         // Une erreur est survenue
-      });
+    });
 }
 
 fetchGallery()
 
+///////////////////////////////////////////
+// TRYING TO REFACTOR THE FETCH FUNCTION //
+///////////////////////////////////////////
+
+// let worksObject;
+// function fetchWorks() {
+//     fetch("http://localhost:5678/api/works")
+//     .then(function(res) {
+//         if (res.ok) {
+//             let worksObject = res.json();
+//             return worksObject;
+//         }
+//     })
+// }
+// console.log(fetchWorks())
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 // // api url
 // const api_url = 
