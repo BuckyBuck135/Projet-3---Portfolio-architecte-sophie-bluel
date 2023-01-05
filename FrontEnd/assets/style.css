@@ -182,10 +182,16 @@ menu.btn-wrapper {
 	padding: 0.6em 1.5em;
 }
 
-.filter-btn:hover,
-.filter-btn:focus {
+.filter-btn:hover {
 	color: #FFFFFF;
 	background-color: #1D6154;
+}
+
+/*ADDED FEATURE - NOT ON FIGMA SPECS*/
+.filter-btn:focus {
+	color: #FFFFFF;
+	background-color: #B1663C;
+	border: 1px solid #B1663C;
 }
 
 .gallery {
