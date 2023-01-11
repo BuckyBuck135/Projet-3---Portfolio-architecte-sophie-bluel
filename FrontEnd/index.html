@@ -6,69 +6,90 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 	<meta name="description" content="Sophie Bluel, Architecte d'intérieur, raconte votre histoire et valorise vos idées. Elle vous accompagne de la conception à la livraison finale du chantier.">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a class="nav-link" href="#portfolio">projets</a></li>
-			<li><a class="nav-link" href="#contact">contact</a></li>
-			<li><a class="nav-link" href="login.html">login</a></li>
-			<li><a class="nav-link" href="#"><img src="./assets/icons/instagram.png" alt="Instagram"></a></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<menu class="btn-wrapper">
-			<li><button class="filter-btn" id="all-works">Tous</button></li>
-			<li><button class="filter-btn" id="objects-works">Objets</button></li>
-			<li><button class="filter-btn" id="apartments-works">Appartements</button></li>
-			<li><button class="filter-btn" id="hotels-works">Hôtels & restaurants</button></li>
-		</menu>
-
-		<div class="gallery" id="gallery">
-			<!-- Gallery will be rendered here -->
+	<!-- homepage_edit bar -->
+	<div class="homepage-edit edit-div" id="homepage-edit">
+		<div class="edit-wrapper edit-div">
+			<img src="./assets/icons/edit.png" class="edit-icon" alt="Icône mode édition.">
+			<span class="edit-text">Mode édition</span>
 		</div>
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form id="contact-form" action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name" required>
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email" required>
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10" required></textarea>
-			<button class="submit-btn" type="submit">Envoyer</button>
-		</form>
-	</section>
-</main>
+		<button class="edit-btn" id="edit-btn">publier les changements</button>
+	</div>
+	<header>
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a class="nav-link" href="#portfolio">projets</a></li>
+				<li><a class="nav-link" href="#contact">contact</a></li>
+				<li><a class="nav-link" href="login.html">login</a></li>
+				<li><a class="nav-link" href="#"><img src="./assets/icons/instagram.png" alt="Instagram."></a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<section id="introduction">
+			<figure> <!-- /*currently doesn't scale with viewport*/ -->
+				<img src="./assets/images/sophie-bluel.png" class="portrait" alt="L'architecte Sophie Bluel souriante, face à l'objectif.">
+			</figure>
+			<article>
+				<button class="edit-wrapper edit-div"> <!--Hidden by default-->
+					<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
+					<span class="edit-text-black">modifier</span>
+				</button>
+				<h2>Designer d'espace</h2>
+				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+				<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+			</article>
+		</section>
+		<button class="edit-wrapper edit-div portrait-margin "> <!--Hidden by default-->
+			<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
+			<span class="edit-text-black">modifier</span>
+		</button>
+		<section id="portfolio">
+			<h2>Mes Projets</h2>
+			<button class="edit-wrapper edit-div relative-to-projects"> <!--Hidden by default ; /*currently doesn't scale with viewport*/-->
+				<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
+				<span class="edit-text-black">modifier</span>
+			</button>
+			<menu class="btn-wrapper">
+				<li><button class="filter-btn" id="all-works">Tous</button></li>
+				<li><button class="filter-btn" id="objects-works">Objets</button></li>
+				<li><button class="filter-btn" id="apartments-works">Appartements</button></li>
+				<li><button class="filter-btn" id="hotels-works">Hôtels & restaurants</button></li>
+			</menu>
 
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
-<script src="index.js"></script>
+			<div class="gallery" id="gallery">
+				<!-- Gallery will be rendered here -->
+			</div>
+		</section>
+		<section id="contact">
+			<h2>Contact</h2>
+			<p>Vous avez un projet ? Discutons-en !</p>
+			<form id="contact-form" action="#" method="post">
+				<label for="name">Nom</label>
+				<input type="text" name="name" id="name" required>
+				<label for="email">Email</label>
+				<input type="email" name="email" id="email" required>
+				<label for="message">Message</label>
+				<textarea name="message" id="message" cols="30" rows="10" required></textarea>
+				<button class="submit-btn" type="submit">Envoyer</button>
+			</form>
+		</section>
+	</main>
+
+	<footer>
+		<nav>
+			<ul>
+				<li>Mentions Légales</li>
+			</ul>
+		</nav>
+	</footer>
+	<script src="index.js"></script>
+	<script src="login.js"></script>
 </body>
 </html>

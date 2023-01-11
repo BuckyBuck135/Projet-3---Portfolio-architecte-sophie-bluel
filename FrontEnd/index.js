@@ -5,6 +5,8 @@ const allWorksBtn = document.getElementById("all-works")
 const objectsWorksBtn = document.getElementById("objects-works")
 const apartmentsWorksBtn = document.getElementById("apartments-works")
 const hotelsWorksBtn = document.getElementById("hotels-works")
+const editDivs = document.getElementsByClassName("edit-div")
+
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
@@ -81,3 +83,12 @@ const contactForm = document.getElementById("contact-form")
 contactForm.addEventListener("submit", function(e) {
     e.preventDefault()
 })
+
+// User log in //
+let isLoggedIn = true;
+if (isLoggedIn) {
+    for (let i = 0; i<editDivs.length; i++) {
+        editDivs[i].style.display = "flex"
+    }
+    
+}
