@@ -35,11 +35,11 @@ async function renderAllWorks() {
     }
 }
 
-// Render filetered Works
+// Render filtered Works
 async function renderFilteredWorks(category) {
     const works = await fetchApi();
     for (let i=0; i<works.length; i++) {
-        //checks category property for HOTELS (categoryId = 3)
+        //checks category property
             if(works[i].categoryId === category) {
                 const figure = document.createElement("figure")
                 figure.innerHTML = `
@@ -51,7 +51,7 @@ async function renderFilteredWorks(category) {
     }
 }
 
-// Event listeners for Filter buttons
+// Event listeners for Filter buttons - using 1 / 2 / 3 as arguments for categories Objets / Appartements / Hotels & restaurants
 allWorksBtn.addEventListener("click", function() {
     galleryEl.innerHTML = ""
     renderAllWorks()
@@ -74,49 +74,6 @@ hotelsWorksBtn.addEventListener("click", function() {
 
 
 //////////////////// END OF HOME PAGE PORTFOLIO ////////////////////
-
-
-// // Fetch categories and function to filter works
-// function fetchCategories() {
-//     fetch("http://localhost:5678/api/categories")
-//       .then(function(res) {
-//       if (res.ok) {
-//         return res.json() ;
-//       }
-//     })
-//     .then(function(value) {
-//       // checks the value of the returned json  
-//       console.log(value); 
-//       //   const helloResult = document.getElementById("hello-result")
-//       //   helloResult.innerHTML = value.queryString.greetings
-//     })
-//     .catch(function(err) {
-//       // Une erreur est survenue
-//     });
-//   }
-//   fetchCategories()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Submits contact form //
