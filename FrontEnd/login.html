@@ -26,15 +26,18 @@
 		<main>
 			<section id="login">
 				<h2>Log In</h2>
-				<!-- <form action="#" method="post"> -->
+				<!-- <form action="/index.html" method="post"> -->
 				<form class="login-form" id="login-form">
-					<label for="email">Email</label>
-					<input type="email" name="email" id="email">
-					<label for="password">Mot de passe</label>
-					<input type="password" name="password" id="password">
+					<label for="email-input">Email</label>
+					<input type="email" name="email" id="email-input" required>
+					<span class="error-message"></span>
+					<label for="password-input">Mot de passe</label>
+					<input type="password" name="password" id="password-input" required>
+					<span class="error-message"></span>
 					<button type="submit" class="submit-btn">Se connecter</button>
 				</form>
 				<a class="forgotten-password" href="#"><p>Mot de passe oublié</p></a>
+				<p id="result"></p>
 			</section>
 		</main>
 		<footer>
