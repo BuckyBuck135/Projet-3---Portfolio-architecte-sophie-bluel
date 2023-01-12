@@ -24,33 +24,67 @@ async function fetchApi() {
     }
 }
 
+// // Render all Works - OLD VERSION
+// async function renderAllWorks() {
+//     const works = await fetchApi();
+//     for (let i=0; i<works.length; i++) {
+//         const figure = document.createElement("figure")
+//         figure.innerHTML = `
+//             <img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="anonymous">
+//             <figcaption>${works[i].title}</figcaption>
+//         `
+//         galleryEl.appendChild(figure)
+//     }
+// }
+
 // Render all Works
 async function renderAllWorks() {
     const works = await fetchApi();
-    for (let i=0; i<works.length; i++) {
-        const figure = document.createElement("figure")
-        figure.innerHTML = `
-            <img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="anonymous">
-            <figcaption>${works[i].title}</figcaption>
+    let html = ""
+    for (let work of works) {
+        html += `
+        <figure>
+            <img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+            <figcaption>${work.title}</figcaption>
+        </figure>
         `
-        galleryEl.appendChild(figure)
     }
+    galleryEl.innerHTML = html
 }
+
+
+// // Render filtered Works - OLD VERSION
+// async function renderFilteredWorks(category) {
+//     const works = await fetchApi();
+//     for (let i=0; i<works.length; i++) {
+//         //checks category property
+//             if(works[i].categoryId === category) {
+//                 const figure = document.createElement("figure")
+//                 figure.innerHTML = `
+//                     <img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="anonymous">
+//                     <figcaption>${works[i].title}</figcaption>
+//                 `
+//                 galleryEl.appendChild(figure)
+//             }
+//     }
+// }
 
 // Render filtered Works
 async function renderFilteredWorks(category) {
     const works = await fetchApi();
-    for (let i=0; i<works.length; i++) {
+    let html = ""
+    for (let work of works) {
         //checks category property
-            if(works[i].categoryId === category) {
-                const figure = document.createElement("figure")
-                figure.innerHTML = `
-                    <img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="anonymous">
-                    <figcaption>${works[i].title}</figcaption>
+            if(work.categoryId === category) {
+                html += `
+                    <figure>
+                        <img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+                        <figcaption>${work.title}</figcaption>
+                    </figure>
                 `
-                galleryEl.appendChild(figure)
             }
     }
+    galleryEl.innerHTML = html
 }
 
 // Event listeners for Filter buttons - using 1 / 2 / 3 as arguments for categories Objets / Appartements / Hotels & restaurants
