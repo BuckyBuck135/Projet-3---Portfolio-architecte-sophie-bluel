@@ -240,6 +240,7 @@ nav li {
 }
 
 .relative-to-projects {
+	font-family: 'Work Sans';
 	position: absolute;
     top: 7px;
     left: 215px;
