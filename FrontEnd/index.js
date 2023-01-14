@@ -7,6 +7,7 @@ const apartmentsWorksBtn = document.getElementById("apartments-works")
 const hotelsWorksBtn = document.getElementById("hotels-works")
 const editDivs = document.getElementsByClassName("edit-div")
 
+// import {isLoggedIn} from "/login.js"
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
@@ -24,19 +25,6 @@ async function fetchApi() {
     }
 }
 
-// // Render all Works - OLD VERSION
-// async function renderAllWorks() {
-//     const works = await fetchApi();
-//     for (let i=0; i<works.length; i++) {
-//         const figure = document.createElement("figure")
-//         figure.innerHTML = `
-//             <img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="anonymous">
-//             <figcaption>${works[i].title}</figcaption>
-//         `
-//         galleryEl.appendChild(figure)
-//     }
-// }
-
 // Render all Works
 async function renderAllWorks() {
     const works = await fetchApi();
@@ -51,23 +39,6 @@ async function renderAllWorks() {
     }
     galleryEl.innerHTML = html
 }
-
-
-// // Render filtered Works - OLD VERSION
-// async function renderFilteredWorks(category) {
-//     const works = await fetchApi();
-//     for (let i=0; i<works.length; i++) {
-//         //checks category property
-//             if(works[i].categoryId === category) {
-//                 const figure = document.createElement("figure")
-//                 figure.innerHTML = `
-//                     <img src="${works[i].imageUrl}" alt="${works[i].title}" crossorigin="anonymous">
-//                     <figcaption>${works[i].title}</figcaption>
-//                 `
-//                 galleryEl.appendChild(figure)
-//             }
-//     }
-// }
 
 // Render filtered Works
 async function renderFilteredWorks(category) {
@@ -119,10 +90,10 @@ contactForm.addEventListener("submit", function(e) {
 })
 
 // User log in //
-let isLoggedIn = true;
-if (isLoggedIn) {
-    for (let i = 0; i<editDivs.length; i++) {
-        editDivs[i].style.display = "flex"
-    }
+// // let isLoggedIn = true;
+// if (isLoggedIn) {
+//     for (let i = 0; i<editDivs.length; i++) {
+//         editDivs[i].style.display = "flex"
+//     }
     
-}
+// }
