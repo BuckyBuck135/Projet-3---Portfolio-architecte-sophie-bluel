@@ -1,7 +1,7 @@
 const loginForm = document.getElementById("login-form")
 const emailInput = document.getElementById("email-input")
 const passwordInput = document.getElementById("password-input")
-
+const loginMessage = document.getElementById("login-message")
 
 function sendLogin(e) {
     e.preventDefault();
@@ -16,24 +16,42 @@ function sendLogin(e) {
             password: passwordInput.value
         })
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) {
+              throw new Error('Failed to retrieve token');
+            }
+            return res.json();
+          })
         .then(data => {
         localStorage.setItem("token", data.token);
-                console.log(localStorage.getItem("token"))
-
+        // console.log(localStorage.getItem("token"))
+        
+        // If using cookies =>
         // document.cookie = "token = " + data.token
         // console.log(document.cookie)
-
+        sucessMessage()
         setTimeout('window.location = "/index.html"', 2000);
-        
+        setTimeout('loginMessage.style.display="none"', 2000);
+        })
+        .catch(error => {
+            console.error(error.message);
+            errorMessage()
         })
 }
-    //   .then(function(res) {
-    //     if (res.ok) {
-    //       return res.json();
-    //     }
-    //   })
-    
-
+ 
 // Submits login form //
 loginForm.addEventListener("submit", sendLogin)
+
+function sucessMessage() {
+    loginMessage.style.display="block"
+    loginMessage.classList.remove("error-message")
+    loginMessage.classList.add("success-message")
+    loginMessage.textContent = "Authentification réussie"
+}
+
+function errorMessage() {
+    loginMessage.style.display="block"
+    loginMessage.classList.remove("success-message")
+    loginMessage.classList.add("error-message")
+    loginMessage.textContent = "L'authentification a échoué"
+}

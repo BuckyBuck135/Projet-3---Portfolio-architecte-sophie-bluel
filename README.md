@@ -3,7 +3,7 @@ OpenClassrooms - Parcours Webdev Projet 3
 
 API test account
 email: sophie.bluel@test.tld
-password: S0phie 
+password: S0phie
 
 ```
 

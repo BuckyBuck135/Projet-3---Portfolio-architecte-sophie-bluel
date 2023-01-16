@@ -14,7 +14,7 @@ section.login {
 
 .login form {
 	text-align: left;
-	margin-top:30px;
+	margin: 30px 0;
 	display: flex;
 	flex-direction: column;
 }
@@ -66,4 +66,20 @@ section.login {
 
 footer nav ul {
 	margin: 12em 2em 2em;
+}
+
+/* Error messages */
+.login-message {
+	display: none;
+	text-align: center;
+	padding: 0.3em 0.8em;
+	color: white;
+}
+
+.error-message {
+	background-color: red;
+}
+
+.success-message {
+	background-color:#1D6154;
 }
