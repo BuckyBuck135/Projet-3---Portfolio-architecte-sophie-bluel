@@ -3,6 +3,7 @@ const emailInput = document.getElementById("email-input")
 const passwordInput = document.getElementById("password-input")
 const loginMessage = document.getElementById("login-message")
 
+// WORKING
 function sendLogin(e) {
     e.preventDefault();
     fetch("http://localhost:5678/api/users/login", {
@@ -38,7 +39,53 @@ function sendLogin(e) {
             errorMessage()
         })
 }
- 
+
+
+// REFACTORING - NOT WORKING
+// async function sendLogin(e) {
+//     e.preventDefault();
+//     const options = {
+//         method: 'POST',
+//         headers: {
+//             "Accept": "application/json",
+//             "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify({
+//             email: emailInput.value,
+//             password: passwordInput.value
+//         })
+//     }
+//     try {
+//         const data = await fetch("http://localhost:5678/api/users/login", options);
+//         // console.log(data.json())
+//         return data.json();
+        
+//         } 
+//     catch (e) {
+//         console.error(e.message)
+//         return e;
+//     }
+// }
+
+// async function loginProcess() {
+//     const data = await sendLogin()
+//     console.log(data.token)
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Submits login form //
 loginForm.addEventListener("submit", sendLogin)
 

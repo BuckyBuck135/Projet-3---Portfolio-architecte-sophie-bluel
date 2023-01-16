@@ -32,7 +32,7 @@
 			</ul>
 		</nav>
 	</header>
-	<main>
+	<main id="mainBox">
 		<section id="introduction" class="introduction">
 			<figure> <!-- /*currently doesn't scale with viewport*/ -->
 				<img src="./assets/images/sophie-bluel.png" class="portrait" alt="L'architecte Sophie Bluel souriante, face à l'objectif.">
@@ -48,7 +48,7 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 			</article>
 		</section>
-		<button class="edit-wrapper edit-div portrait-margin "> <!--Hidden by default-->
+		<button class="edit-wrapper edit-div portrait-margin ">
 			<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
 			<span class="edit-text-black">modifier</span>
 		</button>
@@ -56,10 +56,10 @@
 			<div class="relative-to-projects-wrapper">
 			<h2>Mes Projets
 				<!--Hidden by default-->
-				<button class="edit-wrapper edit-div relative-to-projects"> 
-				<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
-				<span class="edit-text-black">modifier</span>
-			</button>
+				<button id="edit-gallery-btn" class="edit-wrapper edit-div relative-to-projects"> 
+					<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
+					<span class="edit-text-black">modifier</span>
+				</button>
 			</h2>
 			</div>
 			
@@ -70,9 +70,7 @@
 				<li><button class="filter-btn" id="hotels-works">Hôtels & restaurants</button></li>
 			</menu>
 
-			<div class="gallery" id="gallery">
-				<!-- Gallery will be rendered here -->
-			</div>
+			<div class="gallery" id="gallery"></div>
 		</section>
 		<section id="contact" class="contact">
 			<h2>Contact</h2>
@@ -84,7 +82,7 @@
 				<input type="email" name="email" id="email" required>
 				<label for="message">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10" required></textarea>
-				<button class="submit-btn" type="submit">Envoyer</button>
+				<button class="submit-btn contact-btn" type="submit">Envoyer</button>
 			</form>
 		</section>
 	</main>
@@ -96,6 +94,41 @@
 			</ul>
 		</nav>
 	</footer>
+
+	<!-- Editing modal - hidden by default -->
+	<div id="editing-modal" class="editing-modal">
+		<div class="modal-close">
+			<span id="modal-close" onclick="closeModal()">X</span>
+		</div>
+		<div class="modal-form">
+			<h2 id="modal-header" class="modal-header">Galerie photo</h2>
+			<div class="modal-grid">
+				<figure>
+					<img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+					<figcaption>${work.title}</figcaption>
+				</figure>
+				<figure>
+					<img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+					<figcaption>${work.title}</figcaption>
+				</figure>
+				<figure>
+					<img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+					<figcaption>${work.title}</figcaption>
+				</figure>
+				<figure>
+					<img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+					<figcaption>${work.title}</figcaption>
+				</figure>
+				<figure>
+					<img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+					<figcaption>${work.title}</figcaption>
+				</figure>
+			</div>
+			<hr>
+			<button id="add-photo-btn" class="submit-btn add-photo-btn">Ajouter une photo</button>
+			<button id="delete-gallery-btn" class="delete-gallery-btn">Supprimer la gallerie</button>
+		</div>
+	</div>
 </body>
 <script src="src/index.js"></script>
 </html>

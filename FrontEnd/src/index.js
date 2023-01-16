@@ -7,6 +7,8 @@ const apartmentsWorksBtn = document.getElementById("apartments-works")
 const hotelsWorksBtn = document.getElementById("hotels-works")
 const editDivs = document.getElementsByClassName("edit-div")
 const logoutBtn = document.getElementById("logout-btn")
+const editGalleryBtn = document.getElementById("edit-gallery-btn")
+const editingModal = document.getElementById("editing-modal")
 
 
 
@@ -79,14 +81,6 @@ hotelsWorksBtn.addEventListener("click", function() {
     renderFilteredWorks(3)
 })
 
-// Logging out
-function logOut() {
-    for (let i = 0; i<editDivs.length; i++) {
-        editDivs[i].style.display = "none"
-    }
-    localStorage.removeItem("token")
-}
-
 
 // Submits contact form //
 const contactForm = document.getElementById("contact-form")
@@ -94,7 +88,7 @@ contactForm.addEventListener("submit", function(e) {
     e.preventDefault()
 })
 
-// User log in //
+// Logging in //
 
 // let cookie = document.cookie 
 if (localStorage.getItem("token") !== null) {
@@ -109,3 +103,58 @@ if (localStorage.getItem("token") !== null) {
     }
 }
 
+// Logging out
+function logOut() {
+    for (let i = 0; i<editDivs.length; i++) {
+        editDivs[i].style.display = "none"
+    }
+    localStorage.removeItem("token")
+}
+
+///// Editing Modal /////
+let modalIsVisible = false
+
+editGalleryBtn.addEventListener("click", function(e) {
+    editingModal.style.display="flex"
+    modalIsVisible = true
+})
+
+/// CLICK OUTSIDE TO CLOSE NOT WORKING ///
+
+document.addEventListener("click", function(e) {
+    if(e.target == document.getElementById("mainBox")){
+        console.log("click outside the modal")
+        // closeModal()
+        }
+        else{
+            return;
+        }
+})
+
+function closeModal() {
+    editingModal.style.display="none"
+}
+
+//  {
+//     if (event.target == editingModal) {
+//         editingModal.style.display="none"
+//     }
+//   }
+
+// function checkVisible() {
+//     if (modalIsVisible == true) {
+//         document.addEventListener('click', function(event) {
+//             const withinBoundaries = event.composedPath().includes(editingModal)
+        
+//         if (!withinBoundaries && modalIsVisible == true) {
+//             editingModal.style.visibility="hidden"
+//             modalIsVisible = false
+//           console.log('Click happened **OUTSIDE** element')
+//         } else {
+//           console.log('Click happened inside element')
+//         //   editingModal.style.visibility="hidden"
+//         } 
+//         })
+// }
+// }
+    
