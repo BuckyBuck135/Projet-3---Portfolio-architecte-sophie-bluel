@@ -11,7 +11,6 @@ const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 
 
-
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
 // Render all works by default
@@ -82,13 +81,13 @@ hotelsWorksBtn.addEventListener("click", function() {
 })
 
 
-// Submits contact form //
+// Submits contact form - Currently not connected to server//
 const contactForm = document.getElementById("contact-form")
 contactForm.addEventListener("submit", function(e) {
     e.preventDefault()
 })
 
-// Logging in //
+///// Logging in /////
 
 // let cookie = document.cookie 
 if (localStorage.getItem("token") !== null) {
@@ -103,7 +102,7 @@ if (localStorage.getItem("token") !== null) {
     }
 }
 
-// Logging out
+///// Logging out /////
 function logOut() {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
@@ -112,27 +111,26 @@ function logOut() {
 }
 
 ///// Editing Modal /////
-let modalIsVisible = false
 
+// Display the modal on click
 editGalleryBtn.addEventListener("click", function(e) {
     editingModal.style.display="flex"
-    modalIsVisible = true
 })
 
-/// CLICK OUTSIDE TO CLOSE NOT WORKING ///
-
-// document.addEventListener("click", function(e) {
-//     if(e.target == document.getElementById("mainBox")){
-//         console.log("click outside the modal")
-//         // closeModal()
-//         }
-//         else{
-//             return;
-//         }
-// })
-
+// Close the modal on click on the X button OR outside of the modal 
 document.addEventListener("click", function(e) {
-    if (e.target.matches("#modal-close") || !e.target.matches("#editing-modal")) {
+    if (
+        e.target.matches("#modal-close") 
+        || !e.target.matches(".editing-modal") 
+        & !e.target.matches("#modal-form") 
+        & !e.target.matches("#modal-grid")
+        & !e.target.matches(".modal-header")
+        & !e.target.matches(".modal-figure")
+        & !e.target.matches(".modal-img")
+        & !e.target.matches(".modal-caption")
+        & !e.target.matches(".add-photo-btn")
+        & !e.target.matches(".delete-gallery-btn")
+    ) {
         closeModal() 
     }
 }, true
@@ -141,27 +139,3 @@ document.addEventListener("click", function(e) {
 function closeModal() {
     editingModal.style.display="none"
 }
-
-//  {
-//     if (event.target == editingModal) {
-//         editingModal.style.display="none"
-//     }
-//   }
-
-// function checkVisible() {
-//     if (modalIsVisible == true) {
-//         document.addEventListener('click', function(event) {
-//             const withinBoundaries = event.composedPath().includes(editingModal)
-        
-//         if (!withinBoundaries && modalIsVisible == true) {
-//             editingModal.style.visibility="hidden"
-//             modalIsVisible = false
-//           console.log('Click happened **OUTSIDE** element')
-//         } else {
-//           console.log('Click happened inside element')
-//         //   editingModal.style.visibility="hidden"
-//         } 
-//         })
-// }
-// }
-    
