@@ -121,15 +121,22 @@ editGalleryBtn.addEventListener("click", function(e) {
 
 /// CLICK OUTSIDE TO CLOSE NOT WORKING ///
 
+// document.addEventListener("click", function(e) {
+//     if(e.target == document.getElementById("mainBox")){
+//         console.log("click outside the modal")
+//         // closeModal()
+//         }
+//         else{
+//             return;
+//         }
+// })
+
 document.addEventListener("click", function(e) {
-    if(e.target == document.getElementById("mainBox")){
-        console.log("click outside the modal")
-        // closeModal()
-        }
-        else{
-            return;
-        }
-})
+    if (e.target.matches("#modal-close") || !e.target.matches("#editing-modal")) {
+        closeModal() 
+    }
+}, true
+)
 
 function closeModal() {
     editingModal.style.display="none"

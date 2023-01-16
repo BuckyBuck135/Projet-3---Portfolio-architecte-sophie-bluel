@@ -355,7 +355,7 @@ footer nav ul {
   margin: auto;
   padding: 25px;
   width: 630px;
-  min-height: 730px;
+  /* min-height: 730px; */
   height: 75vh;
   background-color: #FFFFFF;
   /* display: flex; */

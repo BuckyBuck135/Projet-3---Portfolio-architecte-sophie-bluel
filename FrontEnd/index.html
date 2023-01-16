@@ -32,7 +32,7 @@
 			</ul>
 		</nav>
 	</header>
-	<main id="mainBox">
+	<main>
 		<section id="introduction" class="introduction">
 			<figure> <!-- /*currently doesn't scale with viewport*/ -->
 				<img src="./assets/images/sophie-bluel.png" class="portrait" alt="L'architecte Sophie Bluel souriante, face à l'objectif.">
@@ -48,7 +48,7 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 			</article>
 		</section>
-		<button class="edit-wrapper edit-div portrait-margin ">
+		<button class="edit-wrapper edit-div portrait-margin "> <!--Hidden by default-->
 			<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
 			<span class="edit-text-black">modifier</span>
 		</button>
@@ -70,7 +70,9 @@
 				<li><button class="filter-btn" id="hotels-works">Hôtels & restaurants</button></li>
 			</menu>
 
-			<div class="gallery" id="gallery"></div>
+			<div class="gallery" id="gallery">
+				<!-- Gallery will be rendered here -->
+			</div>
 		</section>
 		<section id="contact" class="contact">
 			<h2>Contact</h2>
