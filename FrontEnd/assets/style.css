@@ -259,6 +259,10 @@ nav li {
     left: 215px;
 }
 
+.portrait-margin {
+	margin-left: 51px;
+}
+
 /* Filter buttons */
 menu.btn-wrapper {
 	display: flex;
