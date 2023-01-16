@@ -1,25 +1,25 @@
 
-#login {
+section.login {
 	width: 50%;
 	margin: auto;
 }
 
-#login > * {
+.login > * {
 	text-align: center;
 } 
 
-#login h2{
+.login h2{
     margin: 5em 0 0.6em 0;
 }
 
-#login form {
+.login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#login input {
+.login input {
 	padding: 0.8em;
 	height: 50px;
 	font-size: 1.2em;
@@ -27,11 +27,11 @@
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#login label {
+.login label {
 	margin: 2em 0 1em 0;
 }
 
-#login .submit-btn {
+.login .submit-btn {
     cursor: pointer;
 	font-family: 'Syne';
 	font-weight: 700;
@@ -46,7 +46,7 @@
     margin : 2.3em auto 1.75em auto;
 }
 
-#login .submit-btn:hover {
+.login .submit-btn:hover {
     color: #1D6154;
 	background-color: white;
 }
@@ -65,5 +65,5 @@
 }
 
 footer nav ul {
-	margin: 23em 2em 2em;
+	margin: 12em 2em 2em;
 }

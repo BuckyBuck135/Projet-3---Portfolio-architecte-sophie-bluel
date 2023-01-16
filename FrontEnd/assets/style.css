@@ -56,7 +56,6 @@ display: block;
 width: 100%;
 }
 
-
 p, h1, h2, h3, h4 {
 overflow-wrap: break-word;
 }
@@ -71,6 +70,12 @@ body {
 	font-size: 16px;
 }
 
+/***********
+   LAYOUT
+***********/   
+
+/* editing functions - visible when logged in */
+
 .homepage-edit {
 	/*hidden by default - toggle to display: flex to reveal*/
 	display: none;
@@ -81,6 +86,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 21px;
+	position: relative; /*for the log out button*/
 }
 
 .edit-wrapper {
@@ -101,27 +107,32 @@ button.edit-wrapper {
 	font-family: inherit;
 }
 
-.portrait-margin {
-	margin: auto;
-    width: 90%;
-}
-
 .edit-icon {
 	height: 15.7px;
 	width: 15.7px;
 }
 
-.edit-btn {
-	width: 216px;
+.edit-btn,
+.logout-btn {
+	border: none;
 	height: 38px;
-	background-color: #FFFFFF;
 	border-radius: 60px;
 	font-size: 14px;
-	font-weight: 500;
 	font-family: inherit;
 	cursor: pointer;
 }
 
+.edit-btn {
+	background-color: #FFFFFF;
+	width: 216px;
+	font-weight: 500;
+}
+
+.logout-btn {
+	width: 120px;
+	color: #FFFFFF;
+	background-color: #1D6154;
+}
 .edit-icon-black {
 	height: 14.9px;
 	width: 14.9px;
@@ -131,6 +142,7 @@ button.edit-wrapper {
 	font-size: 14px;
 }
 
+/* header */
 header, 
 main {
 	max-width: 1140px;
@@ -143,6 +155,7 @@ header {
 	margin: 50px auto;
 }
 
+/* main */
 section {
 	margin: 50px 0
 }
@@ -198,30 +211,30 @@ nav li {
 	color: #B1663C;
 }
 
-#introduction {
+.introduction {
 	display: flex;
 	align-items: center;
 }
 
-#introduction figure {
+.introduction figure {
 	flex: 1
 }
 
-#introduction .portrait {
+.introduction .portrait {
 	display: block;
 	margin: auto;
 	width: 80%;
 }
 
-#introduction article {
+.introduction article {
 	flex: 1
 }
 
-#introduction h2 {
+.introduction h2 {
 	margin: 21px 0 21px 0;
 }
 
-#introduction p {
+.introduction p {
 	margin-bottom: 0.5em;
 	line-height: 19px;
 }
@@ -231,7 +244,7 @@ nav li {
 	justify-content: center;
 }
 
-#portfolio h2 {
+.portfolio h2 {
 	display: inline-block;
 	position: relative;
 	text-align: center;
@@ -246,6 +259,7 @@ nav li {
     left: 215px;
 }
 
+/* Filter buttons */
 menu.btn-wrapper {
 	display: flex;
 	gap: 0.625em;
@@ -270,13 +284,7 @@ menu.btn-wrapper {
 	background-color: #1D6154;
 }
 
-/*ADDED FEATURE - NOT ON FIGMA SPECS*/
-.filter-btn:focus {
-	color: #FFFFFF;
-	background-color: #B1663C;
-	border: 1px solid #B1663C;
-}
-
+/* Works gallery */
 .gallery {
 	width: 100%;
 	display: grid;
@@ -284,7 +292,6 @@ menu.btn-wrapper {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 	margin-top: 3.125em;
-
 }
 
 .gallery img {
@@ -295,35 +302,28 @@ div.gallery figure figcaption {
 	margin-top: 10px;
 }
 
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-.gallery > figure {
-	animation: fadeIn ease-in;
-	animation-duration: 1s;
-}
-
-
-#contact {
+/* Contact form */
+.contact {
 	width: 50%;
 	margin: auto;
 }
 
-#contact > * {
+.contact > * {
 	text-align: center;
 }
 
-#contact h2{
+.contact h2{
 	margin-bottom: 20px;
 }
 
-#contact form {
+.contact form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+.contact input {
 	padding: 0.8em;
 	height: 50px;
 	font-size: 1.2em;
@@ -331,17 +331,17 @@ div.gallery figure figcaption {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact label {
+.contact label {
 	margin: 2em 0 1em 0;
 }
 
-#contact textarea {
+.contact textarea {
 	padding: 0.8em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact .submit-btn {
+.contact .submit-btn {
     cursor: pointer;
 	font-family: 'Syne';
 	font-weight: 700;
@@ -356,14 +356,40 @@ div.gallery figure figcaption {
     margin : 2.3em auto 1.75em auto;
 }
 
-#contact .submit-btn:hover {
+.contact .submit-btn:hover {
     color: #1D6154;
 	background-color: white;
 }
 
+/* footer */
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
 
+/*ADDED FEATURE - NOT ON FIGMA SPECS*/
+.filter-btn:focus {
+	color: #FFFFFF;
+	background-color: #B1663C;
+	border: 1px solid #B1663C;
+}
+
+
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.gallery > figure {
+	animation: fadeIn ease-in;
+	animation-duration: 1s;
+}
+
+
+
+/***********
+  UTILITY 
+**********/ 
+
+.right {
+	position: absolute;
+	right: 20px
+}
