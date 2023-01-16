@@ -6,8 +6,9 @@ const objectsWorksBtn = document.getElementById("objects-works")
 const apartmentsWorksBtn = document.getElementById("apartments-works")
 const hotelsWorksBtn = document.getElementById("hotels-works")
 const editDivs = document.getElementsByClassName("edit-div")
+const logoutBtn = document.getElementById("logout-btn")
 
-// import {isLoggedIn} from "/login.js"
+
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
@@ -59,6 +60,7 @@ async function renderFilteredWorks(category) {
 }
 
 // Event listeners for Filter buttons - using 1 / 2 / 3 as arguments for categories Objets / Appartements / Hotels & restaurants
+
 allWorksBtn.addEventListener("click", function() {
     galleryEl.innerHTML = ""
     renderAllWorks()
@@ -79,8 +81,13 @@ hotelsWorksBtn.addEventListener("click", function() {
     renderFilteredWorks(3)
 })
 
-
-//////////////////// END OF HOME PAGE PORTFOLIO ////////////////////
+// Logging out
+function logOut() {
+    for (let i = 0; i<editDivs.length; i++) {
+        editDivs[i].style.display = "none"
+    }
+    localStorage.removeItem("token")
+}
 
 
 // Submits contact form //
@@ -90,10 +97,17 @@ contactForm.addEventListener("submit", function(e) {
 })
 
 // User log in //
-// // let isLoggedIn = true;
-// if (isLoggedIn) {
-//     for (let i = 0; i<editDivs.length; i++) {
-//         editDivs[i].style.display = "flex"
-//     }
-    
-// }
+
+// let cookie = document.cookie 
+if (localStorage.getItem("token") !== null) {
+// if (cookie) {
+    for (let i = 0; i<editDivs.length; i++) {
+        editDivs[i].style.display = "flex"
+    }
+    logoutBtn.setAttribute("onclick", "logOut()")
+}  else {
+    for (let i = 0; i<editDivs.length; i++) {
+        editDivs[i].style.display = "none"
+    }
+}
+

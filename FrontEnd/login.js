@@ -3,10 +3,6 @@ const emailInput = document.getElementById("email-input")
 const passwordInput = document.getElementById("password-input")
 
 
-
- let isLoggedIn = false
-// export {isLoggedIn}
-
 function sendLogin(e) {
     e.preventDefault();
     fetch("http://localhost:5678/api/users/login", {
@@ -22,8 +18,12 @@ function sendLogin(e) {
         })
         .then(res => res.json())
         .then(data => {
-        console.log(data)
-        // isLoggedIn = true
+        localStorage.setItem("token", data.token);
+                console.log(localStorage.getItem("token"))
+
+        // document.cookie = "token = " + data.token
+        // console.log(document.cookie)
+
         setTimeout('window.location = "/index.html"', 2000);
         
         })
