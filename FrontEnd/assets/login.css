@@ -74,12 +74,16 @@ footer nav ul {
 	text-align: center;
 	padding: 0.3em 0.8em;
 	color: white;
+	border-radius: 60px;
 }
 
 .error-message {
 	background-color: red;
+	border: 1px solid red;
+
 }
 
 .success-message {
 	background-color:#1D6154;
+	border: 1px solid #1D6154;
 }
