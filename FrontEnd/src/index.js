@@ -28,6 +28,7 @@ async function fetchApi() {
 
 // Render all Works
 async function renderAllWorks() {
+    galleryEl.innerHTML = ""
     const works = await fetchApi();
     let html = ""
     for (let work of works) {
@@ -43,6 +44,7 @@ async function renderAllWorks() {
 
 // Render filtered Works
 async function renderFilteredWorks(category) {
+    galleryEl.innerHTML = ""
     const works = await fetchApi();
     let html = ""
     for (let work of works) {
@@ -62,22 +64,18 @@ async function renderFilteredWorks(category) {
 // Event listeners for Filter buttons - using 1 / 2 / 3 as arguments for categories Objets / Appartements / Hotels & restaurants
 
 allWorksBtn.addEventListener("click", function() {
-    galleryEl.innerHTML = ""
     renderAllWorks()
 })
 
 objectsWorksBtn.addEventListener("click", function() {
-    galleryEl.innerHTML = ""
     renderFilteredWorks(1)
 })
 
 apartmentsWorksBtn.addEventListener("click", function() {
-    galleryEl.innerHTML = ""
     renderFilteredWorks(2)
 })
 
 hotelsWorksBtn.addEventListener("click", function() {
-    galleryEl.innerHTML = ""
     renderFilteredWorks(3)
 })
 
