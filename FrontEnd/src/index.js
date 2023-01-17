@@ -115,6 +115,7 @@ function logOut() {
 // Display the modal on click
 editGalleryBtn.addEventListener("click", function(e) {
     editingModal.style.display="flex"
+    renderModalGrid()
 })
 
 // Close the modal on click on the X button OR outside of the modal 
@@ -126,10 +127,14 @@ document.addEventListener("click", function(e) {
         & !e.target.matches("#modal-grid")
         & !e.target.matches(".modal-header")
         & !e.target.matches(".modal-figure")
-        & !e.target.matches(".modal-img")
+        & !e.target.matches(".grid-img")
+        & !e.target.matches(".move-icon")
+        & !e.target.matches(".delete-icon")
         & !e.target.matches(".modal-caption")
+        & !e.target.matches(".modal-hr")
         & !e.target.matches(".add-photo-btn")
         & !e.target.matches(".delete-gallery-btn")
+        
     ) {
         closeModal() 
     }
@@ -138,4 +143,75 @@ document.addEventListener("click", function(e) {
 
 function closeModal() {
     editingModal.style.display="none"
+}
+
+// Render all Works in a grid
+async function renderModalGrid() {
+    const modalGrid = document.getElementById("modal-grid")
+    document.getElementById("modal-grid").innerHTML = ""
+    const works = await fetchApi();
+    let html = ""
+    for (let work of works) {
+        html += `
+        <figure class="modal-figure">
+            <img class="grid-img" id="${work.id}" src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+            <div class="icon-wrapper">
+                <button  class="move-btn"><img data-move="${work.id}" src="assets/icons/move.png" class="move-icon" alt="Icône déplacer."></button>
+                <button  class="delete-btn"><img data-delete="${work.id}" src="assets/icons/delete.png" class="delete-icon" alt="Icône poubelle."></button>
+            </div>
+			<button class="caption-btn"><figcaption class="modal-caption">éditer</figcaption></button>
+        </figure>
+        `
+    }
+    modalGrid.innerHTML = html
+}
+
+// Click listeners for grid icons
+document.addEventListener("click", function(e) {
+    if (e.target.dataset.delete) {
+        handleDeleteClick(e.target.dataset.delete)
+    }
+    if (e.target.dataset.move) {
+        handleMoveClick(e.target.dataset.move)
+    }
+
+})
+
+function handleDeleteClick(imageId) {
+    deleteWorks(imageId)
+}
+
+function handleMoveClick(imageId) {
+    
+}
+
+
+
+//
+function deleteWorks(imageId) {
+    const token = localStorage.getItem("token") 
+    fetch("http://localhost:5678/api/works/" + imageId, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to delete resource');
+        }
+        // checks if the API sends data back; if so, return it.
+        if(res.status !== 204) {
+            return res.json();
+        }
+    })
+    .then(data => {
+        renderModalGrid()
+        renderAllWorks()
+    })
+    .catch(error => {
+            console.log(error.message);
+    })
 }

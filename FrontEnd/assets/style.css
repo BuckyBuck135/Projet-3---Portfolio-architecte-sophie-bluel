@@ -15,7 +15,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -99,7 +99,8 @@ body {
 button.edit-wrapper {
 	/*hidden by default - toggle to display: flex to reveal*/
 	display: none;
-	align-items: start;
+	align-items: center;
+	/* align-items: start; */
 	gap: 9px;
 	cursor: pointer;
 	border: none;
@@ -329,23 +330,10 @@ footer nav ul {
 	margin: 2em
 }
 
-/*ADDED FEATURE - NOT ON FIGMA SPECS*/
-.filter-btn:focus {
-	color: #FFFFFF;
-	background-color: #B1663C;
-	border: 1px solid #B1663C;
-}
 
 
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-.gallery > figure {
-	animation: fadeIn ease-in;
-	animation-duration: 1s;
-}
-
+/* Editing modal */
 .editing-modal {
-  /* visibility: hidden;  */
   display: none;
   position: fixed;
   top: 0;
@@ -355,15 +343,15 @@ footer nav ul {
   margin: auto;
   padding: 25px;
   width: 630px;
-  /* min-height: 730px; */
-  height: 75vh;
+  min-height: fit-content;
+  max-height: 75vh;
   background-color: #FFFFFF;
-  /* display: flex; */
   align-items: center;
   flex-direction: column;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 0px 20px 1px #666;
+  overflow-y: scroll;
 }
 
 .modal-close {
@@ -374,14 +362,12 @@ footer nav ul {
 }
 
 .modal-form {
-	border: 1px solid red;
-	width: 80%;
+	/* width: 80%; */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-
-
 }
+
 .modal-header {
 	font-family: 'Work Sans';
 	font-size: 26px;
@@ -390,6 +376,7 @@ footer nav ul {
 	text-align: center;
 	margin-top: 10px;
 }
+
 .modal-grid {
 	margin: 45px auto;
 	display: grid;
@@ -399,16 +386,51 @@ footer nav ul {
 	/* margin-top: 3.125em; */
 }
 
-.modal-body img {
+.modal-figure {
+	position: relative;
+}
+
+/* hides all move icons that are not on the first image */
+.modal-figure:not(:first-of-type) .move-icon {
+	display: none;
+}
+
+.modal-img {
 	width: 100%;
+	max-width: 80px; /* Je pense que c'est trop petit, mais c'est le design Figma*/
 }
 
-div.modal-body figure figcaption {
-	margin-top: 10px;
+.icon-wrapper {
+	display: flex;
+	gap: 3px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
 }
 
-hr {
-	background-color: #B3B3B3;
+.move-btn,
+.bin-btn,
+.caption-btn {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.caption-btn {
+	margin-top: 5px;
+}
+
+.move-icon,
+.bin-icon {
+	width: 17px;
+	height: 17px;
+}
+
+
+
+.modal-hr {
+	border: 1px solid #B3B3B3;
+    width: 100%;
 }
 
 
@@ -488,4 +510,20 @@ menu.btn-wrapper {
 .right {
 	position: absolute;
 	right: 20px
+}
+
+/*ADDED FEATURE - NOT ON FIGMA SPECS*/
+.filter-btn:focus {
+	color: #FFFFFF;
+	background-color: #B1663C;
+	border: 1px solid #B1663C;
+}
+
+
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.gallery > figure,
+.modal-grid > figure {
+	animation: fadeIn ease-in;
+	animation-duration: 1s;
 }

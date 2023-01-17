@@ -7,7 +7,8 @@ password: S0phie
 
 ```
 
-Swagger http://localhost:5678/api-docs/
+Swagger:
+http://localhost:5678/api-docs/
 
 Specs:
 https://course.oc-static.com/projects/D%C3%A9veloppeur+Web/IW_P6+JS+page+dynamique/E%CC%81tapes+cle%CC%81s+P6+Front-End+(3).pdf
