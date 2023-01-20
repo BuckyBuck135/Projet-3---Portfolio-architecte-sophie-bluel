@@ -73,21 +73,8 @@ function sendLogin(e) {
 // }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Submits login form //
-loginForm.addEventListener("submit", sendLogin)
+loginForm.addEventListener("submit", sendLogin) 
 
 function sucessMessage() {
     loginMessage.style.display="block"
