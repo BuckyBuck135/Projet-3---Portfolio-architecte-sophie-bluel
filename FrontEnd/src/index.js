@@ -9,6 +9,7 @@ const editDivs = document.getElementsByClassName("edit-div")
 const logoutBtn = document.getElementById("logout-btn")
 const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
+const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
 
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
@@ -41,6 +42,7 @@ async function renderAllWorks() {
         `
     }
     galleryEl.innerHTML = html
+    
 }
 
 // Render filtered Works
@@ -164,6 +166,7 @@ async function renderModalGrid() {
         `
     }
     modalGrid.innerHTML = html
+    hasData()
 }
 
 // Click listeners for grid icons
@@ -178,16 +181,16 @@ document.addEventListener("click", function(e) {
 })
 
 function handleDeleteClick(imageId) {
-    deleteWorks(imageId)
+    let text = "Etes-vous sur de vouloir supprimer cette image ?";
+    if (confirm(text) == true) {
+        deleteWorks(imageId)
+    }
 }
-
-function handleMoveClick(imageId) {
+// Not implemented yet
+// function handleMoveClick(imageId) {
     
-}
+// }
 
-
-
-//
 function deleteWorks(imageId) {
     const token = localStorage.getItem("token") 
     fetch("http://localhost:5678/api/works/" + imageId, {
@@ -215,3 +218,74 @@ function deleteWorks(imageId) {
             console.log(error.message);
     })
 }
+
+deleteGalleryBtn.addEventListener("click", function() {
+    let text = "Etes-vous sur de vouloir supprimer toutes les images ?";
+    if (confirm(text) == true) {
+        deleteGallery()
+    }
+})
+// Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
+function deleteGallery() {
+    let IdArray = []
+
+        fetch("http://localhost:5678/api/works", {
+            headers: {
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+            throw new Error('Failed to fetch resource');
+            }
+            return res.json()
+        })
+
+        .then(data => {
+            for (let work of data) {
+                IdArray.push(work.id)
+            }
+            // OR
+            IdArray = data.map(work => work.id);
+
+
+            for (let i = 0; i<IdArray.length; i++) {
+                deleteWorks(IdArray[i])
+                hasData()
+            }
+        })
+        .catch(error => {
+                console.log(error.message);
+        })
+    }
+
+// GET all Works, if empty, disables "delete" button.
+function hasData() {    
+        fetch("http://localhost:5678/api/works", {
+            headers: {
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+            throw new Error('Failed to fetch resource');
+            }
+            return res.json()
+        })
+
+        .then(data => {
+            console.log(data)
+            if (data.length===0) {
+                deleteGalleryBtn.setAttribute("disabled", "")
+            } else {
+                deleteGalleryBtn.removeAttribute("disabled")
+            }
+        })
+        .catch(error => {
+                console.log(error.message);
+        })
+    }
+
+        
