@@ -121,27 +121,30 @@ editGalleryBtn.addEventListener("click", function(e) {
 })
 
 // Close the modal on click on the X button OR outside of the modal 
+
 document.addEventListener("click", function(e) {
-    if (
-        e.target.matches("#modal-close") 
-        || !e.target.matches(".editing-modal") 
-        & !e.target.matches("#modal-form") 
-        & !e.target.matches("#modal-grid")
-        & !e.target.matches(".modal-header")
-        & !e.target.matches(".modal-figure")
-        & !e.target.matches(".grid-img")
-        & !e.target.matches(".move-icon")
-        & !e.target.matches(".delete-icon")
-        & !e.target.matches(".modal-caption")
-        & !e.target.matches(".modal-hr")
-        & !e.target.matches(".add-photo-btn")
-        & !e.target.matches(".delete-gallery-btn")
-        
-    ) {
-        closeModal() 
+    const modalElements = [
+        ".modal-close",
+        ".editing-modal",
+        ".modal-form",
+        ".modal-grid",
+        ".modal-header",
+        ".modal-figure",
+        ".grid-img",
+        ".move-icon",
+        ".delete-icon",
+        ".modal-caption",
+        ".modal-hr",
+        ".add-photo-btn",
+        ".delete-gallery-btn"
+    ];
+    // Checks whether the element clicked matches any of the elements in the modalElements array, if not it will call the closeModal function
+    if (!modalElements.some(element => e.target.matches(element))) {
+        closeModal();
     }
-}, true
-)
+}, true); // true is the useCapture parameter of the eventListener. 
+//It allows to activate the event at the beginning ("capture") rather than at the end("bubble"), when it would resolve in closing the window as soon as I click outside
+
 
 function closeModal() {
     editingModal.style.display="none"
@@ -247,7 +250,7 @@ function deleteGallery() {
                 IdArray.push(work.id)
             }
             // OR
-            IdArray = data.map(work => work.id);
+            // IdArray = data.map(work => work.id);
 
 
             for (let i = 0; i<IdArray.length; i++) {
