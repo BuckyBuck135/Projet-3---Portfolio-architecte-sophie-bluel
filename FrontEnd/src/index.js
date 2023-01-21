@@ -11,27 +11,18 @@ const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
 
+// Importing api functions from api.js
+import { getAllWorks, deleteWorks } from '/src/api.js';
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
 // Render all works by default
 renderAllWorks()
 
-// Fetch Works on http://localhost:5678/api/works
-async function fetchApi() {
-    try {
-        const data = await fetch("http://localhost:5678/api/works");
-        return data.json();
-    } 
-    catch (error) {
-        return error;
-    }
-}
-
 // Render all Works
-async function renderAllWorks() {
+export async function renderAllWorks() {
     galleryEl.innerHTML = ""
-    const works = await fetchApi();
+    const works = await getAllWorks();
     let html = ""
     for (let work of works) {
         html += `
@@ -46,9 +37,9 @@ async function renderAllWorks() {
 }
 
 // Render filtered Works
-async function renderFilteredWorks(category) {
+export async function renderFilteredWorks(category) {
     galleryEl.innerHTML = ""
-    const works = await fetchApi();
+    const works = await getAllWorks();
     let html = ""
     for (let work of works) {
         //checks category property
@@ -89,7 +80,10 @@ contactForm.addEventListener("submit", function(e) {
     e.preventDefault()
 })
 
-///// Logging in /////
+
+//////////////////// LOGGING IN/OUT ////////////////////
+
+// Logging in
 
 // let cookie = document.cookie 
 if (localStorage.getItem("token") !== null) {
@@ -104,7 +98,7 @@ if (localStorage.getItem("token") !== null) {
     }
 }
 
-///// Logging out /////
+// Logging out
 function logOut() {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
@@ -112,7 +106,7 @@ function logOut() {
     localStorage.removeItem("token")
 }
 
-///// Editing Modal /////
+//////////////////// EDITING MODAL ////////////////////
 
 // Display the modal on click
 editGalleryBtn.addEventListener("click", function(e) {
@@ -121,10 +115,8 @@ editGalleryBtn.addEventListener("click", function(e) {
 })
 
 // Close the modal on click on the X button OR outside of the modal 
-
 document.addEventListener("click", function(e) {
     const modalElements = [
-        ".modal-close",
         ".editing-modal",
         ".modal-form",
         ".modal-grid",
@@ -151,10 +143,10 @@ function closeModal() {
 }
 
 // Render all Works in a grid
-async function renderModalGrid() {
+export async function renderModalGrid() {
     const modalGrid = document.getElementById("modal-grid")
     document.getElementById("modal-grid").innerHTML = ""
-    const works = await fetchApi();
+    const works = await getAllWorks();
     let html = ""
     for (let work of works) {
         html += `
@@ -194,62 +186,7 @@ function handleDeleteClick(imageId) {
 // }
 
 
-async function deleteWorks(imageId) {
-    try {
-        const token = localStorage.getItem("token");
-        const res = await fetch(`http://localhost:5678/api/works/${imageId}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-        if (!res.ok) {
-            throw new Error('Failed to delete resource');
-        }
-        if (res.status !== 204) {
-            const data = await res.json();
-            // Do something with the data
-        }
-        renderModalGrid();
-        renderAllWorks();
-    } catch (error) {
-        console.log(error.message);
-    }
-}
-
-// Before refactoring
-// function deleteWorks(imageId) {
-//     const token = localStorage.getItem("token") 
-//     fetch("http://localhost:5678/api/works/" + imageId, {
-//         method: 'DELETE',
-//         headers: {
-//             'Authorization': 'Bearer ' + token,
-//             'Accept': 'application/json', 
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//     .then(res => {
-//         if (!res.ok) {
-//           throw new Error('Failed to delete resource');
-//         }
-//         // checks if the API sends data back; if so, return it.
-//         if(res.status !== 204) {
-//             return res.json();
-//         }
-//     })
-//     .then(data => {
-//         renderModalGrid()
-//         renderAllWorks()
-//     })
-//     .catch(error => {
-//             console.log(error.message);
-//     })
-// }
-
 // Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
-
 deleteGalleryBtn.addEventListener("click", function() {
     let text = "Etes-vous sur de vouloir supprimer toutes les images ?";
     if (confirm(text) == true) {
@@ -259,7 +196,7 @@ deleteGalleryBtn.addEventListener("click", function() {
 
 async function deleteGallery() {
     let IdArray = []
-    const works = await fetchApi()
+    const works = await getAllWorks()
     // fills the array with IDs
     IdArray = works.map(work => work.id)
     // calls deleteWorks with the IDs in the array
@@ -271,7 +208,7 @@ async function deleteGallery() {
 
 // GET all Works, if empty, disables "delete" button.
 async function hasData() {
-    const works = await fetchApi();
+    const works = await getAllWorks();
     if (works.length === 0) {
         deleteGalleryBtn.setAttribute("disabled", "");
     } else {
