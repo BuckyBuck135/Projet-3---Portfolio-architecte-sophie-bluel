@@ -191,36 +191,64 @@ function handleDeleteClick(imageId) {
 }
 // Not implemented yet
 // function handleMoveClick(imageId) {
-    
 // }
 
-function deleteWorks(imageId) {
-    const token = localStorage.getItem("token") 
-    fetch("http://localhost:5678/api/works/" + imageId, {
-        method: 'DELETE',
-        headers: {
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json', 
-            'Content-Type': 'application/json'
-        }
-    })
-    .then(res => {
+
+async function deleteWorks(imageId) {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`http://localhost:5678/api/works/${imageId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
         if (!res.ok) {
-          throw new Error('Failed to delete resource');
+            throw new Error('Failed to delete resource');
         }
-        // checks if the API sends data back; if so, return it.
-        if(res.status !== 204) {
-            return res.json();
+        if (res.status !== 204) {
+            const data = await res.json();
+            // Do something with the data
         }
-    })
-    .then(data => {
-        renderModalGrid()
-        renderAllWorks()
-    })
-    .catch(error => {
-            console.log(error.message);
-    })
+        renderModalGrid();
+        renderAllWorks();
+    } catch (error) {
+        console.log(error.message);
+    }
 }
+
+// Before refactoring
+// function deleteWorks(imageId) {
+//     const token = localStorage.getItem("token") 
+//     fetch("http://localhost:5678/api/works/" + imageId, {
+//         method: 'DELETE',
+//         headers: {
+//             'Authorization': 'Bearer ' + token,
+//             'Accept': 'application/json', 
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//     .then(res => {
+//         if (!res.ok) {
+//           throw new Error('Failed to delete resource');
+//         }
+//         // checks if the API sends data back; if so, return it.
+//         if(res.status !== 204) {
+//             return res.json();
+//         }
+//     })
+//     .then(data => {
+//         renderModalGrid()
+//         renderAllWorks()
+//     })
+//     .catch(error => {
+//             console.log(error.message);
+//     })
+// }
+
+// Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
 
 deleteGalleryBtn.addEventListener("click", function() {
     let text = "Etes-vous sur de vouloir supprimer toutes les images ?";
@@ -228,67 +256,26 @@ deleteGalleryBtn.addEventListener("click", function() {
         deleteGallery()
     }
 })
-// Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
-function deleteGallery() {
+
+async function deleteGallery() {
     let IdArray = []
-
-        fetch("http://localhost:5678/api/works", {
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (!res.ok) {
-            throw new Error('Failed to fetch resource');
-            }
-            return res.json()
-        })
-
-        .then(data => {
-            for (let work of data) {
-                IdArray.push(work.id)
-            }
-            // OR
-            // IdArray = data.map(work => work.id);
-
-
-            for (let i = 0; i<IdArray.length; i++) {
-                deleteWorks(IdArray[i])
-                hasData()
-            }
-        })
-        .catch(error => {
-                console.log(error.message);
-        })
+    const works = await fetchApi()
+    // fills the array with IDs
+    IdArray = works.map(work => work.id)
+    // calls deleteWorks with the IDs in the array
+    for (let i = 0; i<IdArray.length; i++) {
+        deleteWorks(IdArray[i])
+        hasData()
     }
+}
 
 // GET all Works, if empty, disables "delete" button.
-function hasData() {    
-        fetch("http://localhost:5678/api/works", {
-            headers: {
-                'Accept': 'application/json', 
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (!res.ok) {
-            throw new Error('Failed to fetch resource');
-            }
-            return res.json()
-        })
-
-        .then(data => {
-            console.log(data)
-            if (data.length===0) {
-                deleteGalleryBtn.setAttribute("disabled", "")
-            } else {
-                deleteGalleryBtn.removeAttribute("disabled")
-            }
-        })
-        .catch(error => {
-                console.log(error.message);
-        })
+async function hasData() {
+    const works = await fetchApi();
+    if (works.length === 0) {
+        deleteGalleryBtn.setAttribute("disabled", "");
+    } else {
+        deleteGalleryBtn.removeAttribute("disabled");
     }
-
-        
+}
+ 
