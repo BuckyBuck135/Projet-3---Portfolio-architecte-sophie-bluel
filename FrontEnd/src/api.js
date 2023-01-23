@@ -1,5 +1,6 @@
 //////////////////// Importing helper functions from api.js ////////////////////
 import {renderModalGrid, renderAllWorks } from '/src/index.js';
+import {uploadFormEl} from '/src/index.js';
 
 
 export async function getAllWorks() {
@@ -65,3 +66,32 @@ export async function deleteWorks(imageId) {
 //             console.log(error.message);
 //     })
 // }
+
+
+
+export async function postUploadForm() {
+    try {
+        const token = localStorage.getItem("token");
+
+        const res = await fetch("http://localhost:5678/api/works", {
+            method: 'POST',
+            body: new FormData(uploadFormEl),
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json',
+                'Content-Type': 'multipart/form-data; boundary=${formData._boundary}'
+            }
+        });
+        if (!res.ok) {
+            throw new Error('Failed to upload resource');
+        }
+        // if (res.status !== 204) {
+            const data = await res.json();
+            console.log(data)
+            // Do something with the data
+        // }
+    } 
+    catch (error) {
+        console.log(error.message);
+    }
+}

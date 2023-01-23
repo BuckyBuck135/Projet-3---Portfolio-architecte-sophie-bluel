@@ -10,9 +10,11 @@ const logoutBtn = document.getElementById("logout-btn")
 const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
+// const deleteMessage = document.getElementById("delete-message")
 
-// Importing api functions from api.js
-import { getAllWorks, deleteWorks } from '/src/api.js';
+
+// Importing functions from api.js
+import { getAllWorks, deleteWorks, postUploadForm } from '/src/api.js';
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
@@ -91,13 +93,14 @@ if (localStorage.getItem("token") !== null) {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "flex"
     }
-    logoutBtn.setAttribute("onclick", "logOut()")
+    // logoutBtn.setAttribute("onclick", "logOut()")
 }  else {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
     }
 }
 
+logoutBtn.addEventListener("click", logOut)
 // Logging out
 function logOut() {
     for (let i = 0; i<editDivs.length; i++) {
@@ -179,8 +182,17 @@ function handleDeleteClick(imageId) {
     let text = "Etes-vous sur de vouloir supprimer cette image ?";
     if (confirm(text) == true) {
         deleteWorks(imageId)
-    }
+        // renderDeleteMessage()
+        // setTimeout('deleteMessage.style.display="none"', 2000);
+
+    } 
 }
+
+// function renderDeleteMessage() {
+//     deleteMessage.style.display="block"
+//     deleteMessage.textContent = "Image supprimée"
+// }
+
 // Not implemented yet
 // function handleMoveClick(imageId) {
 // }
@@ -217,8 +229,26 @@ async function hasData() {
 }
  
 ////////// UPLOADING MODAL //////////
+const uploadingModal = document.getElementById("uploading-modal")
+// Open the modal
+const addPhotoBtn = document.getElementById("add-photo-btn")
+addPhotoBtn.addEventListener("click", function() {
+    uploadingModal.style.display = "flex"
+})
 
-// manages the preview of the uplaoded picture
+// Back to editing
+const modalBack = document.getElementById("modal-back")
+modalBack.addEventListener("click", function() {
+    uploadingModal.style.display = "none"
+    editingModal.style.display = "flex"
+})
+// Close the modal
+const closeUploadBtn = document.getElementById("upload-close")
+closeUploadBtn.addEventListener("click", function() {
+    uploadingModal.style.display = "none"
+})
+
+// manages the preview of the uploaded picture
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
     var reader = new FileReader();
     reader.onload = function(){
@@ -227,10 +257,24 @@ document.getElementById("upload-file-input").addEventListener("input", function(
     };
     reader.readAsDataURL(e.target.files[0]);
     hideUploader()
-  });
+    // console.log(e.target.files[0])
+});
+
 
 function hideUploader() {
-document.getElementById("uploader").style.display = "none"
-document.getElementById("upload-background").classList.add("uploader-no-padding")
+    document.getElementById("uploader").style.display = "none"
+    document.getElementById("upload-background").classList.add("uploader-no-padding")
 }
+
+
+export const uploadFormEl = document.getElementById("upload-form")
+
+uploadFormEl.addEventListener("submit", function(e) {
+    e.preventDefault()
+    postUploadForm()
+    const formData = new FormData(uploadFormEl);
+    const values = [...formData.entries()];
+    console.log(values);
+
+})
 

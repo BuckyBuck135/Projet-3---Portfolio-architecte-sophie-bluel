@@ -105,6 +105,7 @@
 			<div id="modal-grid" class="modal-grid">
 				<!-- Modal grid is rendered here -->
 			</div>
+			<span id="delete-message" class="delete-message"></span>
 			<hr class="modal-hr">
 			<button id="add-photo-btn" class="submit-btn add-photo-btn">Ajouter une photo</button>
 			<button id="delete-gallery-btn" class="delete-gallery-btn">Supprimer la gallerie</button>
@@ -112,12 +113,12 @@
 	</div>
 
 	<!-- Editing modal - Adding a photo - hidden by default -->
-	<div id="uploading-modal" class="editing-modal">
+	<div id="uploading-modal" class="uploading-modal">
 		<div class="edit-btn-wrapper">
-			<button id="modal-back" class="modal-back"><img src="./assets/icons/back.png" class="back-icon"></button>
-			<button id="modal-close" class="modal-close">X</button>
+			<button type="button" id="modal-back" class="modal-back"><img src="./assets/icons/back.png" class="back-icon"></button>
+			<button type="button" id="upload-close" class="modal-close">X</button>
 		</div>
-		<form id="modal-form" class="modal-form upload-form">
+		<form id="upload-form" class="modal-form upload-form">
 			<h2 id="modal-header" class="modal-header">Ajout photo</h2>
 			<div id="upload-background" class="upload-background">
 				<img id="upload-file-output" class="upload-file-output" >
@@ -131,18 +132,18 @@
 				</div>
 			</div>
 
-			<label for="upload-title" class="upload-label">Titre</label>
-			<input type="text" id="upload-title" class="upload-input-field" name="upload-title">
+			<label for="title" class="upload-label">Titre</label>
+			<input type="text" id="title" class="upload-input-field" name="title" required>
 
-			<label for="upload-category" class="upload-label">Catégorie</label>
-			<select name="upload-category" id="upload-category"class="upload-input-field" >
-				<option value="objets">Objets</option>
-				<option value="appartements">Appartements</option>
-				<option value="hotels-et-restaurants">Hôtels & restaurants</option>
+			<label for="categoryId"  class="upload-label">Catégorie</label>
+			<select name="categoryId"  id="categoryId" class="upload-input-field" required >
+				<option value="1">Objets</option>
+				<option value="2">Appartements</option>
+				<option value="3">Hôtels & restaurants</option>
 			</select>
 
 			<hr class="upload-hr">
-			<button id="add-photo-btn" class="submit-btn add-photo-btn" disabled>Valider</button>
+			<button type="submit" id="add-photo-btn" class="submit-btn add-photo-btn">Valider</button>
 		</form>
 	</div>
 </body>
