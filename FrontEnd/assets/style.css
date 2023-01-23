@@ -334,7 +334,7 @@ footer nav ul {
 
 /* Editing modal */
 .editing-modal {
-  display: none;
+  display: flex;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -435,8 +435,91 @@ footer nav ul {
     width: 100%;
 }
 
+/* Upload modal */
+.upload-form {
+	width: 420px;
+	/* overflow-y: initial; */
+}
+.edit-btn-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.modal-back {
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.upload-background {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	width: 100%;
+	margin: 36px 0;
+	height: 170px;
+	background-color: #E8F1F7;
+	border-radius: 3px;
+}
+
+.upload-bg-img {
+	width: 60px;
+}
+/*hides the default upload browser button. We style the label instead*/
+.upload-file-input::-webkit-file-upload-button  {
+	visibility: hidden;
+}
+.upload-file-input {
+	visibility: hidden;
+}
+
+.upload-file-label {
+	display: inline-block;
+	background-color: #CBD6DC;
+	border: none;
+	border-radius: 50px;
+	margin: 15px auto 7px auto;
+	padding: 10px 30px;
+	-webkit-user-select: none;
+	cursor: pointer;
+	color: #306685;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.upload-caption {
+	font-size: 10px;
+}
 
 
+.upload-input-field {
+	font-family: inherit;
+	padding-left: 15px;
+	margin: 10px 0 20px 0;
+	height: 50px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.upload-hr {
+	border: 1px solid #B3B3B3;
+    width: 100%;
+	margin-top: 20px;
+}
+
+
+/* Working solution for the padding, BUT icon is not clickable */
+/* select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.upload-form:after {
+    content: url("down-select.png");
+    margin-left: -30px;
+} */
 /***********
   BUTTONS 
 **********/ 
