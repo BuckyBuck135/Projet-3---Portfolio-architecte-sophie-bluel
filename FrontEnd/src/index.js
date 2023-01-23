@@ -216,3 +216,21 @@ async function hasData() {
     }
 }
  
+////////// UPLOADING MODAL //////////
+
+// manages the preview of the uplaoded picture
+document.getElementById("upload-file-input").addEventListener("input", function(e) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        const output = document.getElementById('upload-file-output');
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    hideUploader()
+  });
+
+function hideUploader() {
+document.getElementById("uploader").style.display = "none"
+document.getElementById("upload-background").classList.add("uploader-no-padding")
+}
+
