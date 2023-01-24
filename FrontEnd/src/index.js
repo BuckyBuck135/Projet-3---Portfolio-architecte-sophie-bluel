@@ -12,7 +12,7 @@ const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
 const output = document.getElementById('upload-file-output');
 const uploadFormEl = document.getElementById("upload-form")
-
+const uploadBtn = document.getElementById("upload-btn")
 
 export const fileInput = document.getElementById("upload-file-input");
 export const titleInput = document.getElementById("title");
@@ -100,7 +100,6 @@ if (localStorage.getItem("token") !== null) {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "flex"
     }
-    // logoutBtn.setAttribute("onclick", "logOut()")
 }  else {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
@@ -124,7 +123,7 @@ editGalleryBtn.addEventListener("click", function(e) {
     renderModalGrid()
 })
 
-// Close the modal on click on the X button OR outside of the modal 
+// Close the modal on click on the X button OR outside of the editing modal 
 document.addEventListener("click", function(e) {
     const modalElements = [
         ".editing-modal",
@@ -249,6 +248,7 @@ const modalBack = document.getElementById("modal-back")
 modalBack.addEventListener("click", function() {
     uploadingModal.style.display = "none"
     editingModal.style.display = "flex"
+    // clearForm()
 })
 
 // Close the editing modal on click on the X button OR outside of the modal 
@@ -279,13 +279,15 @@ document.addEventListener("click", function(e) {
 
 function closeUploadingModal() {
     uploadingModal.style.display = "none"
+    // clearForm()
 }
 
 
 
 
 
-// manages the preview of the uploaded picture
+// manages the preview of the uploaded picture and the disabled state on the upload button
+// uploadBtn.disabled = "true"
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
     var reader = new FileReader();
     reader.onload = function(){
@@ -299,6 +301,8 @@ document.getElementById("upload-file-input").addEventListener("input", function(
 function hideUploader() {
     document.getElementById("uploader").style.display = "none"
     document.getElementById("upload-background").classList.add("uploader-no-padding")
+    // uploadBtn.disabled = "false"
+
 }
 
 export function clearForm() {
@@ -307,6 +311,7 @@ export function clearForm() {
     document.getElementById("uploader").style.display = "flex"
     document.getElementById("upload-background").classList.remove("uploader-no-padding")
 }
+
 
 uploadFormEl.addEventListener("submit", function(e) {
     e.preventDefault()

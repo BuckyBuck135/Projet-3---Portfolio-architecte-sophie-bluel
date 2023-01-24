@@ -63,6 +63,7 @@ overflow-wrap: break-word;
 
 html {
 	scroll-behavior: smooth;
+	scroll-padding: 50px;
   }
 
 body {
@@ -320,6 +321,10 @@ div.gallery figure figcaption {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+textarea {
+	resize: none;
+  }
+
 
 /* footer */
 footer nav ul {
@@ -410,7 +415,7 @@ footer nav ul {
 }
 
 .move-btn,
-.bin-btn,
+.delete-btn,
 .caption-btn {
 	background: transparent;
 	border: none;
@@ -600,6 +605,17 @@ menu.btn-wrapper {
 	cursor: not-allowed;
 }
 
+.upload-btn:disabled {
+	background-color: #A7A7A7;
+	border: 1px solid #A7A7A7;
+}
+
+.upload-btn:disabled:hover {
+	background-color: #A7A7A7;
+	border: 1px solid #A7A7A7;
+	color: white;
+	cursor: not-allowed;
+}
 /***********
   UTILITY 
 **********/ 
