@@ -189,11 +189,10 @@ function handleDeleteClick(imageId) {
     let text = "Etes-vous sur de vouloir supprimer cette image ?";
     if (confirm(text) == true) {
         deleteWorks(imageId)
-        renderDeleteMessage()
     } 
 }
 
-function renderDeleteMessage() {
+export function renderDeleteMessage() {
     deleteMessage.textContent = "Image supprimée"
     deleteMessage.classList.add("delete-message");
     deleteMessage.classList.add("elementToFadeInAndOut");
@@ -258,7 +257,6 @@ document.addEventListener("click", function(e) {
         ".uploading-modal",
         ".edit-btn-wrapper",
         ".modal-back",
-        ".modal-close",
         ".upload-form",
         ".modal-header",
         ".upload-background",

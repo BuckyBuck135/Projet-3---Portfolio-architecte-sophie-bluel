@@ -1,5 +1,5 @@
 //////////////////// Importing helper functions and constants from index.js ////////////////////
-import {renderModalGrid, renderAllWorks, clearForm } from '/src/index.js';
+import {renderModalGrid, renderAllWorks, clearForm, renderDeleteMessage } from '/src/index.js';
 import { fileInput, titleInput, categoryInput } from '/src/index.js';
 
 export async function getAllWorks() {
@@ -27,12 +27,14 @@ export async function deleteWorks(imageId) {
         if (!res.ok) {
             throw new Error('Failed to delete resource');
         }
-        if (res.status !== 204) {
-            const data = await res.json();
-            // Do something with the data
-        }
+        //status 204 means "no content" and "no content" means "no res.json()", so we don't need to write the /const data = await res.json();/ line at all
+        // if (res.status !== 204) {
+        //     const data = await res.json();
+        // }
         renderModalGrid();
         renderAllWorks();
+        renderDeleteMessage()
+
     } catch (error) {
         console.log(error.message);
     }
@@ -66,42 +68,37 @@ export async function deleteWorks(imageId) {
 //     })
 // }
 
-
+function createFormData(fileInput, titleInput, categoryInput) {
+    const uploadFormData = new FormData();
+    uploadFormData.append('image', fileInput.files[0]);
+    uploadFormData.append('title', titleInput.value)
+    uploadFormData.append('category', categoryInput.value)
+    return uploadFormData
+}
 
 export async function postUploadForm() {
-    let formData = new FormData();
-    formData.append('image', fileInput.files[0]);
-    formData.append('title', titleInput.value)
-    formData.append('category', categoryInput.value)
+    const uploadFormData = createFormData(fileInput, titleInput, categoryInput) 
     try {
-
         const token = localStorage.getItem("token");
 
         const res = await fetch("http://localhost:5678/api/works", {
             method: 'POST',
-            body: formData,
+            body: uploadFormData,
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Accept': 'application/json',
-                // 'Content-Type': 'multipart/form-data'
             }
         });
         if (!res.ok) {
             throw new Error('Failed to upload resource');
         }
-        // if (res.status !== 204) {
-            const data = await res.json();
-            console.log(data)
-            // Do something with the data
-        // }
+        const data = await res.json();
         renderModalGrid();
         renderAllWorks();
         clearForm() 
-        
     } 
     catch (error) {
         console.log(error.message);
     }
-    console.log(fileInput.value)
 
 }
