@@ -99,8 +99,7 @@ body {
 button.edit-wrapper {
 	/*hidden by default - toggle to display: flex to reveal*/
 	display: none;
-	align-items: center;
-	/* align-items: start; */
+	align-items: flex-end;
 	gap: 9px;
 	cursor: pointer;
 	border: none;
@@ -254,14 +253,13 @@ nav li {
 }
 
 .relative-to-projects {
-	font-family: 'Work Sans';
 	position: absolute;
-    top: 7px;
+    top: 9px;
     left: 215px;
 }
 
 .portrait-margin {
-	margin-left: 51px;
+	margin-left: 56px;
 }
 
 
@@ -333,8 +331,9 @@ footer nav ul {
 
 
 /* Editing modal */
-.editing-modal {
-  display: flex;
+.editing-modal,
+.uploading-modal {
+  display: none;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -380,7 +379,7 @@ footer nav ul {
 }
 
 .modal-grid {
-	margin: 45px auto;
+	margin: 45px auto 25px auto;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	grid-column-gap: 9px;
@@ -428,8 +427,6 @@ footer nav ul {
 	height: 17px;
 }
 
-
-
 .modal-hr {
 	border: 1px solid #B3B3B3;
     width: 100%;
@@ -454,14 +451,30 @@ footer nav ul {
 .upload-background {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	padding: 20px;
 	width: 100%;
 	margin: 36px 0;
-	height: 170px;
+	min-height: 170px;
 	background-color: #E8F1F7;
 	border-radius: 3px;
 }
+
+.uploader-no-padding {
+	padding: 0;
+}
+/* style the uploaded image */
+.upload-file-output {
+	width: 130px;
+}
+
+.uploader {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 
 .upload-bg-img {
 	width: 60px;
@@ -481,7 +494,6 @@ footer nav ul {
 	border-radius: 50px;
 	margin: 15px auto 7px auto;
 	padding: 10px 30px;
-	-webkit-user-select: none;
 	cursor: pointer;
 	color: #306685;
 	font-weight: 500;
@@ -498,7 +510,6 @@ footer nav ul {
 	padding-left: 15px;
 	margin: 10px 0 20px 0;
 	height: 50px;
-	background: #FFFFFF;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
@@ -508,18 +519,12 @@ footer nav ul {
 	margin-top: 20px;
 }
 
-
-/* Working solution for the padding, BUT icon is not clickable */
-/* select {
-    appearance: none;
+select {
+	-webkit-appearance: none;
     -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-.upload-form:after {
-    content: url("down-select.png");
-    margin-left: -30px;
-} */
+    appearance: none;
+    background: url(/assets/icons/down-select.png) right 10px center no-repeat;
+} 
 /***********
   BUTTONS 
 **********/ 
@@ -581,6 +586,8 @@ menu.btn-wrapper {
 
 .delete-gallery-btn {
 	appearance: none;
+	width: fit-content;
+    margin: 0 auto;
 	background-color: transparent;
 	border: none;
 	color: #D65353;
@@ -602,7 +609,10 @@ menu.btn-wrapper {
 	right: 20px
 }
 
-/*ADDED FEATURE - NOT ON FIGMA SPECS*/
+/***********
+ADDED FEATUREs - NOT ON FIGMA SPECS
+**********/ 
+
 .filter-btn:focus {
 	color: #FFFFFF;
 	background-color: #B1663C;
@@ -616,4 +626,32 @@ menu.btn-wrapper {
 .modal-grid > figure {
 	animation: fadeIn ease-in;
 	animation-duration: 1s;
+}
+
+
+.delete-message {
+	position: fixed;
+    top: 3em;
+    left: 50%;
+    z-index: 1;
+    transform: translate3d(-50%, 0, 0);
+	text-align: center;
+	padding: 0.5em 1em;
+	color: white;
+	border-radius: 60px;
+	background-color:#1D6154;
+	border: 1px solid #1D6154;
+	margin-bottom: 20px;
+}
+
+/*Animation style*/
+.elementToFadeInAndOut {
+    animation: fadeInOut 4s linear forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity:0; }
+    25% { opacity:1; } 
+    75% { opacity:1; } 
+    100% { opacity:0; } 
 }

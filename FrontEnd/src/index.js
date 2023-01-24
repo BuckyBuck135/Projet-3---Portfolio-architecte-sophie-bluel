@@ -10,9 +10,18 @@ const logoutBtn = document.getElementById("logout-btn")
 const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
+const output = document.getElementById('upload-file-output');
+const uploadFormEl = document.getElementById("upload-form")
 
-// Importing api functions from api.js
-import { getAllWorks, deleteWorks } from '/src/api.js';
+
+export const fileInput = document.getElementById("upload-file-input");
+export const titleInput = document.getElementById("title");
+export const categoryInput = document.getElementById("categoryId");
+const deleteMessage = document.getElementById("delete-message")
+
+
+// Importing functions from api.js
+import { getAllWorks, deleteWorks, postUploadForm } from '/src/api.js';
 
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
@@ -91,13 +100,14 @@ if (localStorage.getItem("token") !== null) {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "flex"
     }
-    logoutBtn.setAttribute("onclick", "logOut()")
+    // logoutBtn.setAttribute("onclick", "logOut()")
 }  else {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
     }
 }
 
+logoutBtn.addEventListener("click", logOut)
 // Logging out
 function logOut() {
     for (let i = 0; i<editDivs.length; i++) {
@@ -179,11 +189,20 @@ function handleDeleteClick(imageId) {
     let text = "Etes-vous sur de vouloir supprimer cette image ?";
     if (confirm(text) == true) {
         deleteWorks(imageId)
-    }
+    } 
 }
-// Not implemented yet
-// function handleMoveClick(imageId) {
-// }
+
+export function renderDeleteMessage() {
+    deleteMessage.textContent = "Image supprimée"
+    deleteMessage.classList.add("delete-message");
+    deleteMessage.classList.add("elementToFadeInAndOut");
+    setTimeout(function() {
+        deleteMessage.textContent = ""
+        deleteMessage.classList.remove("delete-message");
+        deleteMessage.classList.remove("elementToFadeInAndOut");}
+    , 4000);
+}
+
 
 
 // Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
@@ -216,3 +235,86 @@ async function hasData() {
     }
 }
  
+////////// UPLOADING MODAL //////////
+const uploadingModal = document.getElementById("uploading-modal")
+// Open the uploading modal
+const addPhotoBtn = document.getElementById("add-photo-btn")
+addPhotoBtn.addEventListener("click", function() {
+    editingModal.style.display = "none"
+    uploadingModal.style.display = "flex"
+})
+
+// Back to editing modal
+const modalBack = document.getElementById("modal-back")
+modalBack.addEventListener("click", function() {
+    uploadingModal.style.display = "none"
+    editingModal.style.display = "flex"
+})
+
+// Close the editing modal on click on the X button OR outside of the modal 
+document.addEventListener("click", function(e) {
+    const modalElements = [
+        ".uploading-modal",
+        ".edit-btn-wrapper",
+        ".modal-back",
+        ".upload-form",
+        ".modal-header",
+        ".upload-background",
+        ".upload-file-output",
+        ".uploader",
+        ".upload-bg-img",
+        ".upload-file-label",
+        ".upload-file-input",
+        ".upload-caption",
+        ".upload-label",
+        ".upload-input-field",
+        ".upload-hr",
+        ".add-photo-btn"
+    ];
+    // Checks whether the element clicked matches any of the elements in the modalElements array, if not it will call the closeModal function
+    if (!modalElements.some(element => e.target.matches(element))) {
+        closeUploadingModal();
+    }
+}, true);
+
+function closeUploadingModal() {
+    uploadingModal.style.display = "none"
+}
+
+
+
+
+
+// manages the preview of the uploaded picture
+document.getElementById("upload-file-input").addEventListener("input", function(e) {
+    var reader = new FileReader();
+    reader.onload = function(){
+        output.src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    hideUploader()
+});
+
+
+function hideUploader() {
+    document.getElementById("uploader").style.display = "none"
+    document.getElementById("upload-background").classList.add("uploader-no-padding")
+}
+
+export function clearForm() {
+    output.src = ""
+    titleInput.value = ""
+    document.getElementById("uploader").style.display = "flex"
+    document.getElementById("upload-background").classList.remove("uploader-no-padding")
+}
+
+uploadFormEl.addEventListener("submit", function(e) {
+    e.preventDefault()
+    postUploadForm()
+})
+
+
+///// To do /////
+
+// function handleMoveClick(imageId) {
+// }
