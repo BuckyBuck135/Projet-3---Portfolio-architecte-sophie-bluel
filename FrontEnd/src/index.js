@@ -10,7 +10,14 @@ const logoutBtn = document.getElementById("logout-btn")
 const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
-// const deleteMessage = document.getElementById("delete-message")
+const output = document.getElementById('upload-file-output');
+const uploadFormEl = document.getElementById("upload-form")
+
+
+export const fileInput = document.getElementById("upload-file-input");
+export const titleInput = document.getElementById("title");
+export const categoryInput = document.getElementById("categoryId");
+const deleteMessage = document.getElementById("delete-message")
 
 
 // Importing functions from api.js
@@ -183,15 +190,19 @@ function handleDeleteClick(imageId) {
     if (confirm(text) == true) {
         deleteWorks(imageId)
         // renderDeleteMessage()
-        // setTimeout('deleteMessage.style.display="none"', 2000);
+        
 
     } 
 }
 
-// function renderDeleteMessage() {
-//     deleteMessage.style.display="block"
-//     deleteMessage.textContent = "Image supprimée"
-// }
+function renderDeleteMessage() {
+    deleteMessage.style.display="block"
+    deleteMessage.textContent = "Image supprimée"
+    setTimeout(function() {
+        deleteMessage.style.display="none"
+        deleteMessage.textContent = ""}
+    , 4000);
+}
 
 // Not implemented yet
 // function handleMoveClick(imageId) {
@@ -252,7 +263,6 @@ closeUploadBtn.addEventListener("click", function() {
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
     var reader = new FileReader();
     reader.onload = function(){
-        const output = document.getElementById('upload-file-output');
         output.src = reader.result;
     };
     reader.readAsDataURL(e.target.files[0]);
@@ -266,15 +276,16 @@ function hideUploader() {
     document.getElementById("upload-background").classList.add("uploader-no-padding")
 }
 
-
-export const uploadFormEl = document.getElementById("upload-form")
+export function clearForm() {
+    output.src = ""
+    titleInput.value = ""
+    document.getElementById("uploader").style.display = "flex"
+    document.getElementById("upload-background").classList.remove("uploader-no-padding")
+}
 
 uploadFormEl.addEventListener("submit", function(e) {
     e.preventDefault()
     postUploadForm()
-    const formData = new FormData(uploadFormEl);
-    const values = [...formData.entries()];
-    console.log(values);
-
 })
+
 

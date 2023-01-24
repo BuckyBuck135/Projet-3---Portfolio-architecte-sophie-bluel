@@ -25,11 +25,11 @@ function sendLogin(e) {
           })
         .then(data => {
         localStorage.setItem("token", data.token);
-        // console.log(localStorage.getItem("token"))
         
         // If using cookies =>
         // document.cookie = "token = " + data.token
         // console.log(document.cookie)
+        
         sucessMessage()
         setTimeout('window.location = "/index.html"', 2000);
         setTimeout('loginMessage.style.display="none"', 2000);

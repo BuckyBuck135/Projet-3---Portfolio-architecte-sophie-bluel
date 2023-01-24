@@ -1,7 +1,6 @@
-//////////////////// Importing helper functions from api.js ////////////////////
-import {renderModalGrid, renderAllWorks } from '/src/index.js';
-import {uploadFormEl} from '/src/index.js';
-
+//////////////////// Importing helper functions and constants from index.js ////////////////////
+import {renderModalGrid, renderAllWorks, clearForm } from '/src/index.js';
+import { fileInput, titleInput, categoryInput } from '/src/index.js';
 
 export async function getAllWorks() {
     try {
@@ -70,16 +69,21 @@ export async function deleteWorks(imageId) {
 
 
 export async function postUploadForm() {
+    let formData = new FormData();
+    formData.append('image', fileInput.files[0]);
+    formData.append('title', titleInput.value)
+    formData.append('category', categoryInput.value)
     try {
+
         const token = localStorage.getItem("token");
 
         const res = await fetch("http://localhost:5678/api/works", {
             method: 'POST',
-            body: new FormData(uploadFormEl),
+            body: formData,
             headers: {
                 'Authorization': 'Bearer ' + token,
                 'Accept': 'application/json',
-                'Content-Type': 'multipart/form-data; boundary=${formData._boundary}'
+                // 'Content-Type': 'multipart/form-data'
             }
         });
         if (!res.ok) {
@@ -90,8 +94,14 @@ export async function postUploadForm() {
             console.log(data)
             // Do something with the data
         // }
+        renderModalGrid();
+        renderAllWorks();
+        clearForm() 
+        
     } 
     catch (error) {
         console.log(error.message);
     }
+    console.log(fileInput.value)
+
 }
