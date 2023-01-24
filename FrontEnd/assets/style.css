@@ -99,8 +99,7 @@ body {
 button.edit-wrapper {
 	/*hidden by default - toggle to display: flex to reveal*/
 	display: none;
-	align-items: center;
-	/* align-items: start; */
+	align-items: flex-end;
 	gap: 9px;
 	cursor: pointer;
 	border: none;
@@ -254,14 +253,13 @@ nav li {
 }
 
 .relative-to-projects {
-	font-family: 'Work Sans';
 	position: absolute;
-    top: 7px;
+    top: 9px;
     left: 215px;
 }
 
 .portrait-margin {
-	margin-left: 51px;
+	margin-left: 56px;
 }
 
 
@@ -453,6 +451,7 @@ footer nav ul {
 .upload-background {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
 	padding: 20px;
 	width: 100%;
@@ -588,6 +587,8 @@ menu.btn-wrapper {
 
 .delete-gallery-btn {
 	appearance: none;
+	width: fit-content;
+    margin: 0 auto;
 	background-color: transparent;
 	border: none;
 	color: #D65353;
@@ -625,13 +626,30 @@ menu.btn-wrapper {
 	animation-duration: 1s;
 }
 
-/* .delete-message {
-	display: none;
+
+.delete-message {
+	position: fixed;
+    top: 4em;
+    left: 50%;
+    z-index: 999999;
+    transform: translate3d(-50%, 0, 0);
 	text-align: center;
-	padding: 0.3em 0.8em;
+	padding: 0.5em 1em;
 	color: white;
 	border-radius: 60px;
 	background-color:#1D6154;
 	border: 1px solid #1D6154;
 	margin-bottom: 20px;
-} */
+}
+
+/*Animation style*/
+.elementToFadeInAndOut {
+    animation: fadeInOut 4s linear forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity:0; }
+    25% { opacity:1; } 
+    75% { opacity:1; } 
+    100% { opacity:0; } 
+}

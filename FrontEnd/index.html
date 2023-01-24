@@ -105,11 +105,14 @@
 			<div id="modal-grid" class="modal-grid">
 				<!-- Modal grid is rendered here -->
 			</div>
-			<span id="delete-message" class="delete-message"></span>
+			<div id="delete-message">
+				<span></span>
+			</div>
 			<hr class="modal-hr">
 			<button id="add-photo-btn" class="submit-btn add-photo-btn">Ajouter une photo</button>
 			<button id="delete-gallery-btn" class="delete-gallery-btn">Supprimer la gallerie</button>
 		</div>
+		
 	</div>
 
 	<!-- Editing modal - Adding a photo - hidden by default -->
@@ -126,7 +129,7 @@
 					<img src="./assets/icons/upload-bg.png" class="upload-bg-img">
 					<label for="upload-file-input" class="upload-file-label">+ Ajouter photo</label>
 					<input type="file" id="upload-file-input" class="upload-file-input" 
-							name="upload-file-input" accept="image/png, image/jpg, image/jpeg" title=" ">
+							name="upload-file-input" accept="image/png, image/jpg, image/jpeg" >
 
 					<p class="upload-caption">jpg, png : 4mo max</p>
 				</div>
