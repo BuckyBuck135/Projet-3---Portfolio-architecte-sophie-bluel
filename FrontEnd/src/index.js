@@ -241,19 +241,21 @@ async function deleteGallery() {
 async function hasData() {
     const works = await getAllWorks();
     if (works.length === 0) {
-        deleteGalleryBtn.setAttribute("disabled", "");
+        deleteGalleryBtn.setAttribute("disabled", "true");
     } else {
         deleteGalleryBtn.removeAttribute("disabled");
     }
 }
  
 ////////// UPLOADING MODAL //////////
+
 const uploadingModal = document.getElementById("uploading-modal")
 // Open the uploading modal
 const addPhotoBtn = document.getElementById("add-photo-btn")
 addPhotoBtn.addEventListener("click", function() {
     editingModal.style.display = "none"
     uploadingModal.style.display = "flex"
+    uploadBtn.setAttribute("disabled", true)
 })
 
 // Back to editing modal
@@ -300,13 +302,13 @@ function closeUploadingModal() {
 
 
 // manages the preview of the uploaded picture and the disabled state on the upload button
-// uploadBtn.disabled = "true"
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
     var reader = new FileReader();
     reader.onload = function(){
         output.src = reader.result;
     };
     reader.readAsDataURL(e.target.files[0]);
+    uploadBtn.removeAttribute("disabled")
     hideUploader()
 });
 
@@ -314,8 +316,6 @@ document.getElementById("upload-file-input").addEventListener("input", function(
 function hideUploader() {
     document.getElementById("uploader").style.display = "none"
     document.getElementById("upload-background").classList.add("uploader-no-padding")
-    // uploadBtn.disabled = "false"
-
 }
 
 export function clearForm() {
@@ -326,11 +326,42 @@ export function clearForm() {
 }
 
 
+// Submitting the add photo form and chaining checks until the data is posted.
 uploadFormEl.addEventListener("submit", function(e) {
     e.preventDefault()
-    postUploadForm()
+    checkFileExtension()
 })
 
+function checkFileExtension() {
+    const fileName = document.getElementById("upload-file-input").value;
+    // get the extension
+    const extension = fileName.split('.').pop().toLowerCase();
+    if (extension === "jpg" || extension === "jpeg" || extension === "png") {
+        // check for filsize < 4Mo
+        checkFileSize(4)
+    } else {
+        console.log("Le fichier téléchargé doit être au format jpg ou png.")
+    }   
+}
+
+function checkFileSize(maxSize) {
+    //convert the size in Mo
+    const fileSize = (fileInput.files[0].size/1024/1024)
+    if (fileSize <= maxSize) {
+        validateUploadForm()
+    } else {
+        console.log("La taille du fichier téléchargé doit être inférieure à 4Mo.")
+    }  
+}
+
+function validateUploadForm() {
+    if (fileInput.value && titleInput.value && categoryInput.value) {
+        postUploadForm()
+    } else {
+        console.log("Une erreur est survenue")
+    }
+
+}
 export function createFormData(fileInput, titleInput, categoryInput) {
     const uploadFormData = new FormData();
     uploadFormData.append('image', fileInput.files[0]);
