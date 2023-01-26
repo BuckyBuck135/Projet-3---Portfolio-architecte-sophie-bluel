@@ -625,6 +625,24 @@ menu.btn-wrapper {
 	right: 20px
 }
 
+.message {
+	display: none;
+	position: fixed;
+    left: 50%;
+    z-index: 1;
+    transform: translate3d(-50%, 0, 0);
+	text-align: center;
+	padding: 0.3em 0.8em;
+	color: white;
+	border-radius: 60px;
+	background-color:#1D6154;
+	border: 1px solid #1D6154;
+}
+
+.top-5em {
+	top: 5em;
+}
+
 /***********
 ADDED FEATUREs - NOT ON FIGMA SPECS
 **********/ 

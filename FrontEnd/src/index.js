@@ -93,13 +93,14 @@ contactForm.addEventListener("submit", function(e) {
 //////////////////// LOGGING IN/OUT ////////////////////
 
 // Logging in
+const loginMessage = document.getElementById("login-message")
 
-// let cookie = document.cookie 
 if (localStorage.getItem("token") !== null) {
-// if (cookie) {
+    // displays the edit buttons across the page
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "flex"
     }
+    loginSuccessMessage()
 }  else {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
@@ -115,6 +116,19 @@ function logOut() {
     localStorage.removeItem("token")
 }
 
+function loginSuccessMessage() {
+    loginMessage.style.display="block"
+    loginMessage.classList.add("message")
+    loginMessage.classList.add("top-5em")
+    loginMessage.classList.add("elementToFadeInAndOut")
+    loginMessage.textContent = "Authentification réussie"
+    setTimeout(removeLoginMessage, 6000);}
+
+function removeLoginMessage() {
+    loginMessage.style.display="none"
+    loginMessage.classList.remove("message")
+    loginMessage.classList.remove("top-5em")
+}
 //////////////////// EDITING MODAL ////////////////////
 
 // Display the modal on click
@@ -318,6 +332,13 @@ uploadFormEl.addEventListener("submit", function(e) {
     postUploadForm()
 })
 
+export function createFormData(fileInput, titleInput, categoryInput) {
+    const uploadFormData = new FormData();
+    uploadFormData.append('image', fileInput.files[0]);
+    uploadFormData.append('title', titleInput.value)
+    uploadFormData.append('category', categoryInput.value)
+    return uploadFormData
+}
 
 ///// To do /////
 
