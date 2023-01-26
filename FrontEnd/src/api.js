@@ -1,6 +1,6 @@
 //////////////////// Importing helper functions and constants from index.js ////////////////////
-import {renderModalGrid, renderAllWorks, clearForm, renderDeleteMessage, createFormData } from '/src/index.js';
-import { fileInput, titleInput, categoryInput } from '/src/index.js';
+import {renderModalGrid, renderAllWorks, clearForm, renderSuccessMessage, renderErrorMessage, createFormData } from '/src/index.js';
+import { fileInput, titleInput, categoryInput, deleteMessage, uploadMessage} from '/src/index.js';
 
 export async function getAllWorks() {
     try {
@@ -32,10 +32,11 @@ export async function deleteWorks(imageId) {
         // }
         renderModalGrid();
         renderAllWorks();
-        renderDeleteMessage()
+        renderSuccessMessage(deleteMessage, "Image(s) supprimée(s)", "top-3em")
 
     } catch (error) {
         console.log(error.message);
+        renderErrorMessage(deleteMessage, "Erreur lors de la suppression", "top-3em")
     }
 }
 
@@ -57,11 +58,13 @@ export async function postUploadForm() {
             throw new Error('Failed to upload resource');
         }
         const data = await res.json();
+        renderSuccessMessage(uploadMessage, "Gallerie mise à jour", "top-3em")
         renderModalGrid();
         renderAllWorks();
         clearForm() 
     } 
     catch (error) {
         console.log(error.message);
+        renderErrorMessage(uploadMessage, "Erreur lors de la mise à jour de la gallerie", "top-3em")
     }
 }

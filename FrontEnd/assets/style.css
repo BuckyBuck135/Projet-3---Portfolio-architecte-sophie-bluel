@@ -638,14 +638,25 @@ menu.btn-wrapper {
 	padding: 0.3em 0.8em;
 	color: white;
 	border-radius: 60px;
-	background-color:#1D6154;
-	border: 1px solid #1D6154;
+}
+
+.top-3em {
+	top: 3em
 }
 
 .top-5em {
 	top: 5em;
 }
 
+.success {
+	background-color:#1D6154;
+	border: 1px solid #1D6154;
+}
+
+.error {
+	background-color: red;
+	border: 1px solid red;
+}
 /***********
 ADDED FEATUREs - NOT ON FIGMA SPECS
 **********/ 
@@ -665,21 +676,6 @@ ADDED FEATUREs - NOT ON FIGMA SPECS
 	animation-duration: 1s;
 }
 
-
-.delete-message {
-	position: fixed;
-    top: 3em;
-    left: 50%;
-    z-index: 1;
-    transform: translate3d(-50%, 0, 0);
-	text-align: center;
-	padding: 0.5em 1em;
-	color: white;
-	border-radius: 60px;
-	background-color:#1D6154;
-	border: 1px solid #1D6154;
-	margin-bottom: 20px;
-}
 
 /*Animation style*/
 .elementToFadeInAndOut {

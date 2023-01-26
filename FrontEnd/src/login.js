@@ -1,15 +1,10 @@
 // import {sendLogin} from '/src/api.js'
 
+
 const loginForm = document.getElementById("login-form")
 const emailInput = document.getElementById("email-input")
 const passwordInput = document.getElementById("password-input")
 const loginMessage = document.getElementById("login-message")
-
- const user = {
-    email: emailInput.value,
-    password: passwordInput.value
-}
-
 
  async function sendLogin(e) {
     e.preventDefault();
@@ -20,7 +15,10 @@ const loginMessage = document.getElementById("login-message")
                 'Accept': 'application/json', 
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify({
+                email: emailInput.value,
+                password: passwordInput.value
+            })
         })
         if (!res.ok) {
             throw new Error('Failed to retrieve token');
@@ -37,6 +35,7 @@ const loginMessage = document.getElementById("login-message")
     catch (error) {
         console.error(error.message);
         loginErrorMessage()
+        // renderErrorMessage(loginMessage, "L'authentification a échoué. Veuillez vérifier votre email et/ou votre mot de passe.")
     }
 }
 

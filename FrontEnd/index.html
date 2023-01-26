@@ -20,7 +20,7 @@
 		<button class="edit-btn" id="edit-btn">publier les changements</button>
 		<!-- <button class="logout-btn right" id="logout-btn">déconnexion</button> -->
 	</div>
-	<div id="login-message" class="hidden message top-5em elementToFadeInAndOut">
+	<div id="login-message" class="message">
 		<span></span> <!-- Toaster div for message -->
 	</div>
 
@@ -109,7 +109,7 @@
 			<div id="modal-grid" class="modal-grid">
 				<!-- Modal grid is rendered here -->
 			</div>
-			<div id="delete-message">
+			<div id="delete-message" class="message">
 				<span></span> <!-- Toaster div for message -->
 			</div>
 			<hr class="modal-hr">
@@ -149,7 +149,9 @@
 				<option value="2">Appartements</option>
 				<option value="3">Hôtels & restaurants</option>
 			</select>
-
+			<div id="upload-message" class="message">
+				<span></span> <!-- Toaster div for message -->
+			</div>
 			<hr class="upload-hr">
 			<button type="submit" id="upload-btn" class="submit-btn add-photo-btn upload-btn">Valider</button>
 		</form>

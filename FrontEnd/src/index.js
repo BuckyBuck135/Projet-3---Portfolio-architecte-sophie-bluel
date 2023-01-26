@@ -17,7 +17,9 @@ const uploadBtn = document.getElementById("upload-btn")
 export const fileInput = document.getElementById("upload-file-input");
 export const titleInput = document.getElementById("title");
 export const categoryInput = document.getElementById("categoryId");
-const deleteMessage = document.getElementById("delete-message")
+export const deleteMessage = document.getElementById("delete-message")
+export const uploadMessage = document.getElementById("upload-message")
+
 
 
 // Importing functions from api.js
@@ -100,7 +102,8 @@ if (localStorage.getItem("token") !== null) {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "flex"
     }
-    loginSuccessMessage()
+    renderSuccessMessage(loginMessage, "Authentification réussie", "top-5em")
+
     logoutBtn.textContent = "logout"
 
 }  else {
@@ -120,14 +123,6 @@ function logOut() {
     localStorage.removeItem("token")
 }
 
-function loginSuccessMessage() {
-    loginMessage.classList.remove("hidden")
-    loginMessage.textContent = "Authentification réussie"
-    setTimeout(removeLoginMessage, 6000);}
-
-function removeLoginMessage() {
-    loginMessage.classList.add("hidden")
-}
 //////////////////// EDITING MODAL ////////////////////
 
 // Display the modal on click
@@ -204,18 +199,30 @@ function handleDeleteClick(imageId) {
     } 
 }
 
-export function renderDeleteMessage() {
-    deleteMessage.textContent = "Image supprimée"
-    deleteMessage.classList.add("delete-message");
-    deleteMessage.classList.add("elementToFadeInAndOut");
+//[] refactor toaster function => add a "position" argument
+
+
+export function renderSuccessMessage(element, message, position) {
+    element.textContent = message
+    element.classList.add("success", position);
+    element.classList.add("elementToFadeInAndOut");
     setTimeout(function() {
-        deleteMessage.textContent = ""
-        deleteMessage.classList.remove("delete-message");
-        deleteMessage.classList.remove("elementToFadeInAndOut");}
+        element.textContent = ""
+        element.classList.remove("success");
+        element.classList.remove("elementToFadeInAndOut");}
     , 4000);
 }
 
-
+export function renderErrorMessage(element, message, position) {
+    element.textContent = message
+    element.classList.add("error", position);
+    element.classList.add("elementToFadeInAndOut");
+    setTimeout(function() {
+        element.textContent = ""
+        element.classList.remove("error");
+        element.classList.remove("elementToFadeInAndOut");}
+    , 4000);
+}
 
 // Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
 deleteGalleryBtn.addEventListener("click", function() {
@@ -247,9 +254,10 @@ async function hasData() {
     }
 }
  
-////////// UPLOADING MODAL //////////
+////////// ADDING A PICTURE - UPLOADING MODAL //////////
 
 const uploadingModal = document.getElementById("uploading-modal")
+
 // Open the uploading modal
 const addPhotoBtn = document.getElementById("add-photo-btn")
 addPhotoBtn.addEventListener("click", function() {
