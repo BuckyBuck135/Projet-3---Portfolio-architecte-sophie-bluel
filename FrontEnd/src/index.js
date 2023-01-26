@@ -101,10 +101,14 @@ if (localStorage.getItem("token") !== null) {
         editDivs[i].style.display = "flex"
     }
     loginSuccessMessage()
+    logoutBtn.textContent = "logout"
+
 }  else {
     for (let i = 0; i<editDivs.length; i++) {
         editDivs[i].style.display = "none"
     }
+    logoutBtn.textContent = "login"
+
 }
 
 logoutBtn.addEventListener("click", logOut)
