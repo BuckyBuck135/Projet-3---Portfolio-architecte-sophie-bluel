@@ -263,7 +263,7 @@ const modalBack = document.getElementById("modal-back")
 modalBack.addEventListener("click", function() {
     uploadingModal.style.display = "none"
     editingModal.style.display = "flex"
-    // clearForm()
+    clearForm()
 })
 
 // Close the editing modal on click on the X button OR outside of the modal 
@@ -294,7 +294,7 @@ document.addEventListener("click", function(e) {
 
 function closeUploadingModal() {
     uploadingModal.style.display = "none"
-    // clearForm()
+    clearForm()
 }
 
 
