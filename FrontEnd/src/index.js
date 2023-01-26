@@ -117,14 +117,14 @@ function logOut() {
 }
 
 function loginSuccessMessage() {
-    loginMessage.style.display="block"
+    loginMessage.classList.remove("hidden")
     loginMessage.classList.add("message", "top-5em", "elementToFadeInAndOut")
     loginMessage.textContent = "Authentification réussie"
     setTimeout(removeLoginMessage, 6000);}
 
 function removeLoginMessage() {
-    loginMessage.style.display="none"
-    loginMessage.classList.remove("message", "top-5em")
+    loginMessage.classList.add("hidden")
+    loginMessage.classList.remove("hidden", "message", "top-5em")
 }
 //////////////////// EDITING MODAL ////////////////////
 

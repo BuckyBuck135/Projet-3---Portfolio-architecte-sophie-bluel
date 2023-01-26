@@ -625,8 +625,11 @@ menu.btn-wrapper {
 	right: 20px
 }
 
+.hidden {
+	visibility: hidden;
+}
+
 .message {
-	display: none;
 	position: fixed;
     left: 50%;
     z-index: 1;
