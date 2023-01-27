@@ -1,19 +1,43 @@
 # Projet-3---Portfolio-architecte-sophie-bluel
-OpenClassrooms - Parcours Webdev Projet 3
 
+/**********
+  CONTEXT
+**********/
+
+In this bootcamp project, my task was to develop a functionnal front-end for an interior architect's website.
+Starting from a a skeleton mark-up, I had to develop the following:
+ * the presentation page of the architect's work (from the provided HTML )
+ * a login page for the site administrator (the client) (code to be created from scratch)
+ * the modals allowing to edit and upload new media (code to be created from scratch)
+
+This project taught me how to:
+* use API documentation and build fetch requests
+* use Javascript to dynamically render data and manipulate the DOM
+* use a Powershell terminal, node.js and npm
+
+/**********
+ RESOURCES
+**********/
+
+ * OpenClassrooms
+ * Scrimba - Special thanks to @mykalimba for his support
+ 
+ 
 /**********
    DEMO
 **********/
+
 ![Alt Text](https://github.com/BuckyBuck135/Projet-3---Portfolio-architecte-sophie-bluel/blob/main/FrontEnd/assets/Sophie-Bluel-demo.gif)
 
 /**********
    SPECS
 **********/
+
+
+```
 API test account
 email: sophie.bluel@test.tld
 password: S0phie
-
-```
 
 Swagger:
 http://localhost:5678/api-docs/
