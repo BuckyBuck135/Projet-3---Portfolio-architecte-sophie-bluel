@@ -1,6 +1,3 @@
-// import {sendLogin} from './api.js'
-
-
 const loginForm = document.getElementById("login-form")
 const loginMessage = document.getElementById("login-message")
 const emailInput = document.getElementById("email-input")

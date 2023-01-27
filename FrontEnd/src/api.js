@@ -1,8 +1,7 @@
 //////////////////// Importing helper functions and constants from index.js ////////////////////
 import {renderModalGrid, renderAllWorks, clearForm, renderSuccessMessage, renderErrorMessage, createFormData } from '/src/index.js';
 import { fileInput, titleInput, categoryInput, deleteMessage, uploadMessage} from '/src/index.js';
-// import { loginErrorMessage } from '/src/login.js'
-// import { emailInput, passwordInput } from '/src/login.js'
+
 
 export async function getAllWorks() {
     try {

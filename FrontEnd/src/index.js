@@ -24,7 +24,6 @@ export const uploadMessage = document.getElementById("upload-message")
 
 // Importing functions from api.js
 import { getAllWorks, deleteWorks, postUploadForm } from '/src/api.js';
-
 //////////////////// HOME PAGE PORTFOLIO ////////////////////
 
 // Render all works by default
