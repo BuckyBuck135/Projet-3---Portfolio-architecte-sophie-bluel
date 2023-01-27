@@ -329,6 +329,7 @@ function hideUploader() {
 export function clearForm() {
     output.src = ""
     titleInput.value = ""
+    categoryInput.value = 0
     document.getElementById("uploader").style.display = "flex"
     document.getElementById("upload-background").classList.remove("uploader-no-padding")
 }
@@ -348,7 +349,7 @@ function checkFileExtension() {
         // check for filsize < 4Mo
         checkFileSize(4)
     } else {
-        console.log("Le fichier téléchargé doit être au format jpg ou png.")
+        renderErrorMessage(uploadMessage, "Erreur : le fichier téléchargé doit être au format jpg ou png", "top-3em")
     }   
 }
 
@@ -356,10 +357,18 @@ function checkFileSize(maxSize) {
     //convert the size in Mo
     const fileSize = (fileInput.files[0].size/1024/1024)
     if (fileSize <= maxSize) {
+        checkCategory()
+    } else {
+        renderErrorMessage(uploadMessage, "Erreur : la taille du fichier téléchargé doit être inférieure à 4Mo", "top-3em")
+    }  
+}
+
+function checkCategory() {
+    if (categoryInput.value != 0) {
         validateUploadForm()
     } else {
-        console.log("La taille du fichier téléchargé doit être inférieure à 4Mo.")
-    }  
+        renderErrorMessage(uploadMessage, "Erreur : veuillez choisir une catégorie", "top-3em")
+    }
 }
 
 function validateUploadForm() {
