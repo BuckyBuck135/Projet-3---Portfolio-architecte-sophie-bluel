@@ -1,15 +1,47 @@
-import {sendLogin} from './api.js'
+// import {sendLogin} from './api.js'
 
 
 const loginForm = document.getElementById("login-form")
 const loginMessage = document.getElementById("login-message")
-export const emailInput = document.getElementById("email-input")
-export const passwordInput = document.getElementById("password-input")
+const emailInput = document.getElementById("email-input")
+const passwordInput = document.getElementById("password-input")
 
 
-console.log(loginForm)
 // Submits login form //
 loginForm.addEventListener("submit", sendLogin) 
+
+async function sendLogin(e) {
+    e.preventDefault();
+    try {
+        const res = await fetch("http://localhost:5678/api/users/login", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json', 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: emailInput.value,
+                password: passwordInput.value
+            })
+        })
+        if (!res.ok) {
+            throw new Error('Failed to retrieve token');
+        }
+        const data = await res.json()
+        localStorage.setItem("token", data.token);
+        
+        // If using cookies =>
+        // document.cookie = "token = " + data.token
+        // console.log(document.cookie)
+        
+        window.location = "/index.html"
+        } 
+    catch (error) {
+        console.error(error.message);
+        loginErrorMessage()
+        // renderErrorMessage(loginMessage, "L'authentification a échoué. Veuillez vérifier votre email et/ou votre mot de passe.")
+    }
+}
 
 export function loginErrorMessage() {
     loginMessage.style.display="block"
