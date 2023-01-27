@@ -307,6 +307,7 @@ document.getElementById("upload-file-input").addEventListener("input", function(
     var reader = new FileReader();
     reader.onload = function(){
         output.src = reader.result;
+        output.setAttribute("alt", "L'espace où sera affichée l'image téléchargée")
     };
     reader.readAsDataURL(e.target.files[0]);
     uploadBtn.removeAttribute("disabled")
