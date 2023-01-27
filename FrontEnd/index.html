@@ -2,10 +2,12 @@
 <html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Sophie Bluel, architecte d'intérieur, vous accompagne de la conception à la livraison finale du chantier">
+	<title>Sophie Bluel - Architecte d'intérieur</title>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="./assets/icons/favicon.jpg" rel="icon" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=Work+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 	<meta name="description" content="Sophie Bluel, Architecte d'intérieur, raconte votre histoire et valorise vos idées. Elle vous accompagne de la conception à la livraison finale du chantier.">
 	<link rel="stylesheet" href="./assets/style.css">
@@ -18,13 +20,12 @@
 			<span class="edit-text">Mode édition</span>
 		</div>
 		<button class="edit-btn" id="edit-btn">publier les changements</button>
-		<!-- <button class="logout-btn right" id="logout-btn">déconnexion</button> -->
 	</div>
-	<div id="login-message" class="message">
-		<span></span> <!-- Toaster div for message -->
+	<div id="login-message" class="message"> <!-- Toaster div for message -->
+		<span></span> 
 	</div>
-
 	<!-- end of homepage_edit bar -->
+
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -36,9 +37,10 @@
 			</ul>
 		</nav>
 	</header>
+
 	<main>
 		<section id="introduction" class="introduction">
-			<figure> <!-- /*currently doesn't scale with viewport*/ -->
+			<figure>
 				<img src="./assets/images/sophie-bluel.png" class="portrait" alt="L'architecte Sophie Bluel souriante, face à l'objectif.">
 			</figure>
 			<article>
@@ -56,6 +58,7 @@
 			<img src="./assets/icons/edit-black.png" class="edit-icon-black" alt="Icône mode édition.">
 			<span class="edit-text-black">modifier</span>
 		</button>
+
 		<section id="portfolio" class="portfolio">
 			<div class="relative-to-projects-wrapper">
 			<h2 id="projets">Mes Projets
@@ -78,6 +81,7 @@
 				<!-- Gallery will be rendered here -->
 			</div>
 		</section>
+
 		<section id="contact" class="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
@@ -109,14 +113,15 @@
 			<div id="modal-grid" class="modal-grid">
 				<!-- Modal grid is rendered here -->
 			</div>
-			<div id="delete-message" class="message">
-				<span></span> <!-- Toaster div for message -->
+
+			<div id="delete-message" class="message"> <!-- Toaster div for message -->
+				<span></span> 
 			</div>
+			
 			<hr class="modal-hr">
 			<button id="add-photo-btn" class="submit-btn add-photo-btn">Ajouter une photo</button>
 			<button id="delete-gallery-btn" class="delete-gallery-btn">Supprimer la gallerie</button>
 		</div>
-		
 	</div>
 
 	<!-- Editing modal - Adding a photo - hidden by default -->
@@ -125,6 +130,7 @@
 			<button type="button" id="modal-back" class="modal-back"><img src="./assets/icons/back.png" class="back-icon"></button>
 			<button type="button" id="upload-close" class="modal-close">X</button>
 		</div>
+
 		<form id="upload-form" class="modal-form upload-form">
 			<h2 id="modal-header" class="modal-header">Ajout photo</h2>
 			<div id="upload-background" class="upload-background">
@@ -150,9 +156,11 @@
 				<option value="2">Appartements</option>
 				<option value="3">Hôtels & restaurants</option>
 			</select>
-			<div id="upload-message" class="message">
-				<span></span> <!-- Toaster div for message -->
+
+			<div id="upload-message" class="message"> <!-- Toaster div for message -->
+				<span></span> 
 			</div>
+
 			<hr class="upload-hr">
 			<button type="submit" id="upload-btn" class="submit-btn add-photo-btn upload-btn">Valider</button>
 		</form>
