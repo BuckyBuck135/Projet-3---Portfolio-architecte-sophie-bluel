@@ -1,5 +1,7 @@
 # Projet-3---Portfolio-architecte-sophie-bluel
 OpenClassrooms - Parcours Webdev Projet 3
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+
 
 API test account
 email: sophie.bluel@test.tld
