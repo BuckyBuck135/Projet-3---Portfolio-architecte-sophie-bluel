@@ -199,9 +199,6 @@ function handleDeleteClick(imageId) {
     } 
 }
 
-//[] refactor toaster function => add a "position" argument
-
-
 export function renderSuccessMessage(element, message, position) {
     element.textContent = message
     element.classList.add("success", position);
@@ -306,9 +303,6 @@ function closeUploadingModal() {
 }
 
 
-
-
-
 // manages the preview of the uploaded picture and the disabled state on the upload button
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
     var reader = new FileReader();
@@ -375,7 +369,7 @@ function validateUploadForm() {
     if (fileInput.value && titleInput.value && categoryInput.value) {
         postUploadForm()
     } else {
-        console.log("Une erreur est survenue")
+        renderErrorMessage(uploadMessage, "Une erreur est survenue", "top-3em")
     }
 
 }
@@ -386,8 +380,3 @@ export function createFormData(fileInput, titleInput, categoryInput) {
     uploadFormData.append('category', categoryInput.value)
     return uploadFormData
 }
-
-///// To do /////
-
-// function handleMoveClick(imageId) {
-// }

@@ -39,11 +39,10 @@ async function sendLogin(e) {
     catch (error) {
         console.error(error.message);
         loginErrorMessage()
-        // renderErrorMessage(loginMessage, "L'authentification a échoué. Veuillez vérifier votre email et/ou votre mot de passe.")
     }
 }
 
-export function loginErrorMessage() {
+function loginErrorMessage() {
     loginMessage.style.display="block"
     loginMessage.classList.remove("success-message")
     loginMessage.classList.add("error-message")
