@@ -49,6 +49,14 @@ Figma design
 https://www.figma.com/file/kfKHknHySoTibZfdolGAX6/Desktop?node-id=0%3A1&t=InDTCL2HfB49sGi5-0
 
 /**********
+VALIDATORS
+**********/
+
+HTML: 1 warning, 0 errors
+CSS: 0 warnings, 0 errors
+Lighthouse: no available before deployment
+
+/**********
  CHANGELOG
 **********/
 v1.0
@@ -83,5 +91,8 @@ v1.2.1
 * modified login toaster to display after redirect
 * removed logout button, replaced with anchor in nav bar
 * added meta description and favicon
+
+v1.2.2
+* Fixed various HTML validator errors
 
 
