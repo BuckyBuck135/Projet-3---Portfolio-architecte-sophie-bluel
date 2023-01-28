@@ -10,6 +10,7 @@ const logoutBtn = document.getElementById("logout-btn")
 const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
+const output = document.getElementById('upload-file-output');
 const uploadFormEl = document.getElementById("upload-form")
 const uploadBtn = document.getElementById("upload-btn")
 
@@ -302,16 +303,10 @@ function closeUploadingModal() {
 
 
 // manages the preview of the uploaded picture and the disabled state on the upload button
-const output = document.getElementById('upload-file-output');
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
     var reader = new FileReader();
     reader.onload = function(){
-        // const output = document.createElement("img")
-        // output.setAttribute("id", "upload-file-input" )
-        // output.setAttribute("class", "upload-file-output")
         output.src = reader.result;
-        output.setAttribute("alt", "L'espace où sera affichée l'image téléchargée")
-        // document.getElementById("upload-background").prepend(output)
     };
     reader.readAsDataURL(e.target.files[0]);
     uploadBtn.removeAttribute("disabled")
