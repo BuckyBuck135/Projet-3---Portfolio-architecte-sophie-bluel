@@ -33,8 +33,6 @@ This project taught me how to:
    SPECS
 **********/
 
-
-```
 API test account
 email: sophie.bluel@test.tld
 password: S0phie
@@ -47,6 +45,8 @@ https://course.oc-static.com/projects/D%C3%A9veloppeur+Web/IW_P6+JS+page+dynamiq
 
 Figma design 
 https://www.figma.com/file/kfKHknHySoTibZfdolGAX6/Desktop?node-id=0%3A1&t=InDTCL2HfB49sGi5-0
+
+Note: Of all the "modify" buttons, only the main Portfolio "modify" button is functionnal, as per specs. Similarly, the Contact Form is not functionnal either.
 
 /**********
 VALIDATORS
