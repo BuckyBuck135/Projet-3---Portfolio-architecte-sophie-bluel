@@ -135,20 +135,21 @@
 		<form id="upload-form" class="modal-form upload-form">
 			<h2 id="upload-header" class="modal-header">Ajout photo</h2>
 			<div id="upload-background" class="upload-background">
-				<img id="upload-file-output" class="upload-file-output"> <!-- Downloaded image is rendered here -->
+				<div id="output-container">
+					<!-- Downloaded image is rendered here -->
+				</div>
 				<div id="uploader" class="uploader">
 					<img src="./assets/icons/upload-bg.png" class="upload-bg-img" alt="Icône téléchargement d'image.">
 					
 					<label for="upload-file-input" class="upload-file-label">+ Ajouter photo</label>
 					<input type="file" id="upload-file-input" class="upload-file-input" 
-							name="upload-file-input" accept="image/png, image/jpg, image/jpeg" required>
-
+						   name="upload-file-input" accept="image/png, image/jpg, image/jpeg">
 					<p class="upload-caption">jpg, png : 4mo max</p>
 				</div>
 			</div>
 
 			<label for="title" class="upload-label">Titre</label>
-			<input type="text" id="title" class="upload-input-field" name="title" required>
+			<input type="text" id="title" class="upload-input-field" name="title">
 
 			<label for="categoryId"  class="upload-label">Catégorie</label>
 			<select name="categoryId"  id="categoryId" class="upload-input-field" >

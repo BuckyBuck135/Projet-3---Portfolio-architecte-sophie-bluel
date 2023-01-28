@@ -10,9 +10,9 @@ const logoutBtn = document.getElementById("logout-btn")
 const editGalleryBtn = document.getElementById("edit-gallery-btn")
 const editingModal = document.getElementById("editing-modal")
 const deleteGalleryBtn = document.getElementById("delete-gallery-btn")
-const output = document.getElementById('upload-file-output');
 const uploadFormEl = document.getElementById("upload-form")
 const uploadBtn = document.getElementById("upload-btn")
+const outputDiv = document.getElementById("output-container");
 
 export const fileInput = document.getElementById("upload-file-input");
 export const titleInput = document.getElementById("title");
@@ -43,7 +43,6 @@ export async function renderAllWorks() {
         `
     }
     galleryEl.innerHTML = html
-    
 }
 
 // Render filtered Works
@@ -110,7 +109,6 @@ if (localStorage.getItem("token") !== null) {
         editDivs[i].style.display = "none"
     }
     logoutBtn.textContent = "login"
-
 }
 
 logoutBtn.addEventListener("click", logOut)
@@ -188,7 +186,6 @@ document.addEventListener("click", function(e) {
     if (e.target.dataset.move) {
         handleMoveClick(e.target.dataset.move)
     }
-
 })
 
 function handleDeleteClick(imageId) {
@@ -304,10 +301,13 @@ function closeUploadingModal() {
 
 // manages the preview of the uploaded picture and the disabled state on the upload button
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
-    var reader = new FileReader();
+    var reader = new FileReader()
     reader.onload = function(){
-        output.src = reader.result;
-    };
+        // dynamically adds an <img> tag into HTML
+        outputDiv.innerHTML = `
+        <img src=${reader.result} id="upload-file-output" class="upload-file-output" alt="Image téléchargée.">
+        `
+    }
     reader.readAsDataURL(e.target.files[0]);
     uploadBtn.removeAttribute("disabled")
     hideUploader()
@@ -320,7 +320,7 @@ function hideUploader() {
 }
 
 export function clearForm() {
-    output.src = ""
+    outputDiv.innerHTML = ""
     titleInput.value = ""
     categoryInput.value = 0
     document.getElementById("uploader").style.display = "flex"
@@ -350,10 +350,18 @@ function checkFileSize(maxSize) {
     //convert the size in Mo
     const fileSize = (fileInput.files[0].size/1024/1024)
     if (fileSize <= maxSize) {
-        checkCategory()
+        checkFileName()
     } else {
         renderErrorMessage(uploadMessage, "Erreur : la taille du fichier téléchargé doit être inférieure à 4Mo", "top-3em")
     }  
+}
+
+function checkFileName() {
+    if(titleInput.value) {
+        checkCategory()
+    } else {
+        renderErrorMessage(uploadMessage, "Erreur : veuillez donner un titre à votre image", "top-3em")
+    }
 }
 
 function checkCategory() {
@@ -370,8 +378,8 @@ function validateUploadForm() {
     } else {
         renderErrorMessage(uploadMessage, "Une erreur est survenue", "top-3em")
     }
-
 }
+
 export function createFormData(fileInput, titleInput, categoryInput) {
     const uploadFormData = new FormData();
     uploadFormData.append('image', fileInput.files[0]);
