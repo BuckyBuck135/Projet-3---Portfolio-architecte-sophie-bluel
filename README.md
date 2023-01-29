@@ -32,6 +32,7 @@ This project taught me how to:
 /**********
    SPECS
 **********/
+Runs on node.js and npm.
 
 API test account
 email: sophie.bluel@test.tld
