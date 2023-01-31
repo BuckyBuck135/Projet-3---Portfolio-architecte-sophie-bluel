@@ -144,13 +144,13 @@ button.edit-wrapper {
 }
 
 /* header */
-header, 
 main {
-	max-width: 1140px;
+	max-width: 950px;
 	margin: auto;
 }
 
 header {
+	max-width: 1140px;
 	display: flex;
 	justify-content: space-between;
 	margin: 50px auto;
@@ -162,8 +162,8 @@ section {
 }
 
 section:first-of-type {
-	/* margin for the edit div under the portrait*/
-	margin: 50px 0 15px 0;
+	/* margin for the first section under nav bar*/
+	margin: 130px 0 15px 0;
 }
 
 h1 {
@@ -196,6 +196,7 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+	gap: 15px;
 }
 
 nav li {
@@ -215,6 +216,7 @@ nav li {
 .introduction {
 	display: flex;
 	align-items: center;
+	gap: 72px;
 }
 
 .introduction figure {
@@ -224,20 +226,23 @@ nav li {
 .introduction .portrait {
 	display: block;
 	margin: auto;
-	width: 80%;
 }
 
 .introduction article {
-	flex: 1
+	flex: 1;
+	display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .introduction h2 {
-	margin: 21px 0 21px 0;
+	margin-bottom: 15px;
 }
 
 .introduction p {
+	font-size: 14px;
 	margin-bottom: 0.5em;
-	line-height: 19px;
+	line-height: 16.42px;
 }
 
 .relative-to-projects-wrapper{
@@ -285,7 +290,7 @@ div.gallery figure figcaption {
 /* Contact form */
 .contact {
 	width: 50%;
-	margin: auto;
+	margin: 60px auto 45px auto;
 }
 
 .contact > * {
