@@ -27,7 +27,7 @@ This project taught me how to:
    DEMO
 **********/
 
-![Alt Text](https://github.com/BuckyBuck135/Projet-3---Portfolio-architecte-sophie-bluel/blob/main/FrontEnd/assets/Sophie-Bluel-demo.gif)
+![Alt Text](https://github.com/BuckyBuck135/Projet-3---Portfolio-architecte-sophie-bluel/blob/main/FrontEnd/assets/images/Sophie-Bluel-demo.gif)
 
 /**********
    SPECS
