@@ -530,6 +530,11 @@ select {
     appearance: none;
     background: url(/assets/icons/down-select.png) right 10px center no-repeat;
 } 
+
+option {
+	font-family: inherit; /*not supported in FF with no workaround*/
+}
+
 /***********
   BUTTONS 
 **********/ 
