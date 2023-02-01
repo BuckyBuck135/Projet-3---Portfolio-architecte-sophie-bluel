@@ -33,11 +33,11 @@ export async function deleteWorks(imageId) {
         // }
         renderModalGrid();
         renderAllWorks();
-        renderSuccessMessage(deleteMessage, "Image(s) supprimée(s)", "top-3em")
+        renderSuccessMessage(deleteMessage, "Image(s) supprimée(s)", "top-7em")
 
     } catch (error) {
         console.log(error.message);
-        renderErrorMessage(deleteMessage, "Erreur lors de la suppression", "top-3em")
+        renderErrorMessage(deleteMessage, "Erreur lors de la suppression", "top-7em")
     }
 }
 
@@ -59,13 +59,13 @@ export async function postUploadForm() {
             throw new Error('Failed to upload resource');
         }
         const data = await res.json();
-        renderSuccessMessage(uploadMessage, "Gallerie mise à jour", "top-3em")
+        renderSuccessMessage(uploadMessage, "Galerie mise à jour", "top-7em")
         renderModalGrid();
         renderAllWorks();
         clearForm() 
     } 
     catch (error) {
         console.log(error.message);
-        renderErrorMessage(uploadMessage, "Erreur lors de la mise à jour de la gallerie", "top-3em")
+        renderErrorMessage(uploadMessage, "Erreur lors de la mise à jour de la galerie", "top-7em")
     }
 }

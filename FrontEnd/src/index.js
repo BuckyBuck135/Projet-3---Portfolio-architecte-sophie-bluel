@@ -128,7 +128,7 @@ editGalleryBtn.addEventListener("click", function(e) {
     renderModalGrid()
 })
 
-// Close the modal on click on the X button OR outside of the editing modal 
+// Close the editing modal on click on the X button OR outside of the editing modal 
 document.addEventListener("click", function(e) {
     const modalElements = [
         ".editing-modal",
@@ -154,6 +154,8 @@ document.addEventListener("click", function(e) {
 
 function closeModal() {
     editingModal.style.display="none"
+    removeErrorMessage(deleteMessage)
+
 }
 
 // Render all Works in a grid
@@ -209,13 +211,19 @@ export function renderSuccessMessage(element, message, position) {
 export function renderErrorMessage(element, message, position) {
     element.textContent = message
     element.classList.add("error", position);
-    element.classList.add("elementToFadeInAndOut");
-    setTimeout(function() {
-        element.textContent = ""
-        element.classList.remove("error");
-        element.classList.remove("elementToFadeInAndOut");}
-    , 4000);
+    element.classList.add("elementToFadeIn");
+    // setTimeout(function() {
+    //     element.textContent = ""
+    //     element.classList.remove("error");
+    //     element.classList.remove("elementToFadeInAndOut");}
+    // , 4000);
 }
+
+ function removeErrorMessage(element) {
+    element.textContent = ""
+        element.classList.remove("error");
+        element.classList.remove("elementToFadeIn")
+ }
 
 // Delete gallery on click: GET all works, pushes IDs into an array that is passed an argument to deleteWorks
 deleteGalleryBtn.addEventListener("click", function() {
@@ -264,10 +272,11 @@ const modalBack = document.getElementById("modal-back")
 modalBack.addEventListener("click", function() {
     uploadingModal.style.display = "none"
     editingModal.style.display = "flex"
+    removeErrorMessage(uploadMessage)
     clearForm()
 })
 
-// Close the editing modal on click on the X button OR outside of the modal 
+// Close the uploading modal on click on the X button OR outside of the modal 
 document.addEventListener("click", function(e) {
     const modalElements = [
         ".uploading-modal",
@@ -295,13 +304,13 @@ document.addEventListener("click", function(e) {
 
 function closeUploadingModal() {
     uploadingModal.style.display = "none"
+    removeErrorMessage(uploadMessage)
     clearForm()
 }
 
-
 // manages the preview of the uploaded picture and the disabled state on the upload button
 document.getElementById("upload-file-input").addEventListener("input", function(e) {
-    var reader = new FileReader()
+    const reader = new FileReader()
     reader.onload = function(){
         // dynamically adds an <img> tag into HTML
         outputDiv.innerHTML = `
@@ -313,7 +322,6 @@ document.getElementById("upload-file-input").addEventListener("input", function(
     hideUploader()
 });
 
-
 function hideUploader() {
     document.getElementById("uploader").style.display = "none"
     document.getElementById("upload-background").classList.add("uploader-no-padding")
@@ -321,12 +329,12 @@ function hideUploader() {
 
 export function clearForm() {
     outputDiv.innerHTML = ""
+    fileInput.value = ""
     titleInput.value = ""
     categoryInput.value = 0
     document.getElementById("uploader").style.display = "flex"
     document.getElementById("upload-background").classList.remove("uploader-no-padding")
 }
-
 
 // Submitting the add photo form and chaining checks until the data is posted.
 uploadFormEl.addEventListener("submit", function(e) {
@@ -339,10 +347,10 @@ function checkFileExtension() {
     // get the extension
     const extension = fileName.split('.').pop().toLowerCase();
     if (extension === "jpg" || extension === "jpeg" || extension === "png") {
-        // check for filsize < 4Mo
+        // check for filesize < 4Mo
         checkFileSize(4)
     } else {
-        renderErrorMessage(uploadMessage, "Erreur : le fichier téléchargé doit être au format jpg ou png", "top-3em")
+        renderErrorMessage(uploadMessage, "Erreur : le fichier téléchargé doit être au format jpg ou png", "top-7em")
     }   
 }
 
@@ -352,7 +360,7 @@ function checkFileSize(maxSize) {
     if (fileSize <= maxSize) {
         checkFileName()
     } else {
-        renderErrorMessage(uploadMessage, "Erreur : la taille du fichier téléchargé doit être inférieure à 4Mo", "top-3em")
+        renderErrorMessage(uploadMessage, "Erreur : la taille du fichier téléchargé doit être inférieure à 4Mo", "top-7em")
     }  
 }
 
@@ -360,7 +368,7 @@ function checkFileName() {
     if(titleInput.value) {
         checkCategory()
     } else {
-        renderErrorMessage(uploadMessage, "Erreur : veuillez donner un titre à votre image", "top-3em")
+        renderErrorMessage(uploadMessage, "Erreur : veuillez donner un titre à votre image", "top-7em")
     }
 }
 
@@ -368,7 +376,7 @@ function checkCategory() {
     if (categoryInput.value != 0) {
         validateUploadForm()
     } else {
-        renderErrorMessage(uploadMessage, "Erreur : veuillez choisir une catégorie", "top-3em")
+        renderErrorMessage(uploadMessage, "Erreur : veuillez choisir une catégorie", "top-7em")
     }
 }
 
@@ -376,7 +384,7 @@ function validateUploadForm() {
     if (fileInput.value && titleInput.value && categoryInput.value) {
         postUploadForm()
     } else {
-        renderErrorMessage(uploadMessage, "Une erreur est survenue", "top-3em")
+        renderErrorMessage(uploadMessage, "Une erreur est survenue", "top-7em")
     }
 }
 

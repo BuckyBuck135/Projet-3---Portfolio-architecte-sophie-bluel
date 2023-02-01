@@ -645,8 +645,8 @@ menu.btn-wrapper {
 	border-radius: 60px;
 }
 
-.top-3em {
-	top: 3em
+.top-7em {
+	top: 7em
 }
 
 .top-5em {
@@ -692,4 +692,14 @@ ADDED FEATUREs - NOT ON FIGMA SPECS
     25% { opacity:1; } 
     75% { opacity:1; } 
     100% { opacity:0; } 
+}
+
+
+.elementToFadeIn {
+    animation: fadeIn 4s linear forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity:0; }
+    25% { opacity:1; } 
 }
