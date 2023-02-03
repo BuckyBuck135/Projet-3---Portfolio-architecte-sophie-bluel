@@ -325,15 +325,12 @@ textarea {
 	resize: none;
   }
 
-
 /* footer */
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
-
-
 
 /* Editing modal */
 .editing-modal,
@@ -440,8 +437,8 @@ footer nav ul {
 /* Upload modal */
 .upload-form {
 	width: 420px;
-	/* overflow-y: initial; */
 }
+
 .edit-btn-wrapper {
 	width: 100%;
 	display: flex;
@@ -469,6 +466,7 @@ footer nav ul {
 .uploader-no-padding {
 	padding: 0;
 }
+
 /* style the uploaded image */
 .upload-file-output {
 	width: 130px;
@@ -480,14 +478,15 @@ footer nav ul {
 	align-items: center;
 }
 
-
 .upload-bg-img {
 	width: 60px;
 }
+
 /*hides the default upload browser button. We style the label instead*/
 .upload-file-input::-webkit-file-upload-button  {
 	visibility: hidden;
 }
+
 .upload-file-input {
 	visibility: hidden;
 }
@@ -508,7 +507,6 @@ footer nav ul {
 .upload-caption {
 	font-size: 10px;
 }
-
 
 .upload-input-field {
 	font-family: inherit;
@@ -621,6 +619,7 @@ menu.btn-wrapper {
 	color: white;
 	cursor: not-allowed;
 }
+
 /***********
   UTILITY 
 **********/ 
@@ -672,7 +671,6 @@ ADDED FEATUREs - NOT ON FIGMA SPECS
 	border: 1px solid #B1663C;
 }
 
-
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
 .gallery > figure,
@@ -680,7 +678,6 @@ ADDED FEATUREs - NOT ON FIGMA SPECS
 	animation: fadeIn ease-in;
 	animation-duration: 1s;
 }
-
 
 /*Animation style*/
 .elementToFadeInAndOut {
@@ -693,7 +690,6 @@ ADDED FEATUREs - NOT ON FIGMA SPECS
     75% { opacity:1; } 
     100% { opacity:0; } 
 }
-
 
 .elementToFadeIn {
     animation: fadeIn 4s linear forwards;

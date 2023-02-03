@@ -198,6 +198,7 @@ function handleDeleteClick(imageId) {
 }
 
 export function renderSuccessMessage(element, message, position) {
+    element.classList.remove("error");
     element.textContent = message
     element.classList.add("success", position);
     element.classList.add("elementToFadeInAndOut");
@@ -212,11 +213,6 @@ export function renderErrorMessage(element, message, position) {
     element.textContent = message
     element.classList.add("error", position);
     element.classList.add("elementToFadeIn");
-    // setTimeout(function() {
-    //     element.textContent = ""
-    //     element.classList.remove("error");
-    //     element.classList.remove("elementToFadeInAndOut");}
-    // , 4000);
 }
 
  function removeErrorMessage(element) {
@@ -334,6 +330,7 @@ export function clearForm() {
     categoryInput.value = 0
     document.getElementById("uploader").style.display = "flex"
     document.getElementById("upload-background").classList.remove("uploader-no-padding")
+    uploadBtn.setAttribute("disabled", true)
 }
 
 // Submitting the add photo form and chaining checks until the data is posted.

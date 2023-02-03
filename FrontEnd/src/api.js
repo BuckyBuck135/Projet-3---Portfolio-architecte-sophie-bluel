@@ -62,7 +62,7 @@ export async function postUploadForm() {
         renderSuccessMessage(uploadMessage, "Galerie mise à jour", "top-7em")
         renderModalGrid();
         renderAllWorks();
-        clearForm() 
+        clearForm()
     } 
     catch (error) {
         console.log(error.message);
